@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Professor {
+public class Secretario {
 	
 	@Id
 	private Long id;
