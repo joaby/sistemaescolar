@@ -1,9 +1,12 @@
 package br.com.jjdesenvolvimento.sistemaescolar.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Aluno {
@@ -15,6 +18,14 @@ public class Aluno {
 	private Date dataNascimento;
 	private char sexo;
 	private StatusAluno status;
+	
+	@ManyToMany
+	private List<Turma> turmas;
+	
+	Aluno(){
+		turmas = new ArrayList<Turma>();
+	}
+	
 	
 	public Long getMatricula() {
 		return matricula;
@@ -52,7 +63,14 @@ public class Aluno {
 	public void setAnoIngresso(int anoIngresso) {
 		this.anoIngresso = anoIngresso;
 	}
-	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

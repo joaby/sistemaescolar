@@ -10,6 +10,9 @@ public class Professor {
 	private Long cpf;
 	private String nome;
 	
+	Professor(){
+	}
+	
 	public Long getCpf() {
 		return cpf;
 	}
@@ -22,7 +25,7 @@ public class Professor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
