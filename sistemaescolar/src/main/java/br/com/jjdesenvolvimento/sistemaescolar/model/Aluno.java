@@ -5,8 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Aluno {
@@ -14,10 +20,22 @@ public class Aluno {
 	@Id
 	private Long matricula;
 	private String nome;
-	private int anoIngresso;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	private char sexo;
+	private String nomeMae;
+	private String nomePai;
+	private String endereco;
+	private String telefone;
+	private String rg;
+	private String cpf;
+	private String email;
+	private boolean especial;
+	private int anoIngresso;
+	@Enumerated(EnumType.STRING)
 	private StatusAluno status;
+	
 	
 	@ManyToMany
 	private List<Turma> turmas;
@@ -68,6 +86,82 @@ public class Aluno {
 	}
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
+	}
+	
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public String getNomePai() {
+		return nomePai;
+	}
+
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
+	}
+
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public String getRg() {
+		return rg;
+	}
+
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public boolean isEspecial() {
+		return especial;
+	}
+
+
+	public void setEspecial(boolean especial) {
+		this.especial = especial;
 	}
 
 
