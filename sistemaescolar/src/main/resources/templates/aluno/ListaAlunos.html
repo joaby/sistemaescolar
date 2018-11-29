@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>Listar Alunos</title>
@@ -16,6 +16,8 @@
 		<div class="w3-container">
   <h2>Lista de Alunos</h2>
   
+  <a class="w3-button w3-teal" href="/aluno/novo">Novo aluno</a>
+  
   <table class="w3-table-all w3-card-4">
     <tr>
    	  <th>Matrícula</th> 	
@@ -26,33 +28,16 @@
 	  <th>Editar</th>
 	  <th>Deletar</th>
     </tr>
-    <tr>
-      <th>111111</th>
-      <td>Jackson Freitas</td>
-      <td>Masculino</td>
-      <td>000.000.000-00</td>
+    <tr th:each="aluno : ${alunos}">
+      <td th:text="${aluno.matricula}"></td>
+      <td th:text="${aluno.nome}"></td>
+      <td th:text="${aluno.sexo}"></td>
+      <td th:text="${aluno.cpf}"></td>
 	  <td><i class="material-icons">visibility</i></td>
 	  <td><i class="material-icons">edit</i></td>
 	  <td><i class="material-icons">delete</i></td>
     </tr>
-    <tr>
-      <th>222222</th>
-      <td>Joabe Cavalcante</td>
-      <td>Masculino</td>
-      <td>000.000.000-00</td>
-	  <td><i class="material-icons">visibility</i></td>
-	  <td><i class="material-icons">edit</i></td>
-	  <td><i class="material-icons">delete</i></td>
-    </tr>
-    <tr>
-      <th>333333</th>
-      <td>Teste Teste</td>
-      <td>Feminino</td>
-      <td>000.000.000-00</td>
-	  <td><i class="material-icons">visibility</i></td>
-	  <td><i class="material-icons">edit</i></td>
-	  <td><i class="material-icons">delete</i></td>
-    </tr>
+    
   </table>
 </div>
 		

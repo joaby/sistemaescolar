@@ -1,14 +1,17 @@
 package br.com.jjdesenvolvimento.sistemaescolar.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Aluno;
+import br.com.jjdesenvolvimento.sistemaescolar.model.StatusAluno;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
 
 @Controller
@@ -33,8 +36,18 @@ public class AlunoController {
 	@RequestMapping
 	public ModelAndView buscarTodos() {
 		List<Aluno> alunos = alunoService.buscarTodos();
-		ModelAndView mv = new ModelAndView("aluno/CadastroAluno");
+		ModelAndView mv = new ModelAndView("aluno/ListaAlunos");
 		mv.addObject("alunos", alunos);
 		return mv;
+	}
+	
+	@ModelAttribute("aluno")
+	public Aluno alunoVazio() {
+		return new Aluno();
+	}
+	
+	@ModelAttribute("todosStatusAluno")
+	public List<StatusAluno> todosStatusAluno(){
+		return Arrays.asList(StatusAluno.values());
 	}
 }

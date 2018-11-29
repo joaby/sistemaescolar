@@ -40,7 +40,7 @@ public class Aluno {
 	@ManyToMany
 	private List<Turma> turmas;
 	
-	Aluno(){
+	public Aluno(){
 		turmas = new ArrayList<Turma>();
 	}
 	
