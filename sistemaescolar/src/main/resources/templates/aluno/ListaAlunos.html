@@ -33,7 +33,18 @@
       <td th:text="${aluno.nome}"></td>
       <td th:text="${aluno.sexo}"></td>
       <td th:text="${aluno.cpf}"></td>
-	  <td><i class="material-icons" onclick="document.getElementById('modalExibicaoAluno').style.display='block'">visibility</i></td>
+      <td th:text="${aluno.dataNascimento}" style="display:none;"></td>
+      <td th:text="${aluno.nomeMae}" style="display:none;"></td>
+      <td th:text="${aluno.nomePai}" style="display:none;"></td>
+      <td th:text="${aluno.endereco}" style="display:none;"></td>
+      <td th:text="${aluno.telefone}" style="display:none;"></td>
+      <td th:text="${aluno.rg}" style="display:none;"></td>
+      <td th:text="${aluno.email}" style="display:none;"></td>
+      <td th:text="${aluno.especial}" style="display:none;"></td>
+      <td th:text="${aluno.anoIngresso}" style="display:none;"></td>
+      <td th:text="${aluno.status.descricao}" style="display:none;"></td>
+      
+	  <td><i class="material-icons" onclick="exibeAluno(event);">visibility</i></td>
 	  <td><i class="material-icons">edit</i></td>
 	  <td><i class="material-icons">delete</i></td>
     </tr>
@@ -49,30 +60,45 @@
 				<span onclick="document.getElementById('modalExibicaoAluno').style.display='none'" 
 				class="w3-button w3-display-topright">&times;</span>
 				<h2>Dados do Aluno</h2>
-			  </header> <p>Frase</p>
-			  <!--
-			  <div class="w3-container">
-				<p th:text = "Matrícula: + ${pessoa.matricula}"></p>
-				<p th:text = "Nome: + ${pessoa.nome}">Nome:</p>
-				<p th:text = "Sexo: + ${pessoa.sexo}">Sexo:</p>
-				<p th:text = "Data de Nascimento: + ${pessoa.dataNascimento}">Data de Nascimento:</p>
-				<p th:text = "Nome da Mãe: + ${pessoa.nomeMae}">Nome da Mãe:</p>
-				<p th:text = "Nome do Pai: + ${pessoa.nomePai}">Nome do Pai:</p>
-				<p th:text = "RG: + ${pessoa.rg}">RG:</p>
-				<p th:text = "CPF: + ${pessoa.cpf}">CPF:</p>
-				<p th:text = "Endereço: + ${pessoa.endereco}">Endereço:</p>
-				<p th:text = "Telefone: + ${pessoa.telefone}">Telefone:</p>
-				<p th:text = "Email: + ${pessoa.email}">Email:</p>
-				<p th:text = "Portador de necessidades: + ${pessoa.porNec}">Portador de necessidades:</p>
-				<p th:text = "Tipo de aluno: + ${pessoa.tipoAluno}">Tipo de aluno:</p>
-				<p th:text = "Data de ingresso: + ${pessoa.dtIngresso}">Data ingresso:</p>
-				<p th:text = "Status: + ${pessoa.status}">Status:</p>
+			  </header>
+			  
+			  <div id="infoAluno" class="w3-container">
+			  	<label>Matrícula: </label>
+				<p></p>
+				<label>Nome: </label>
+				<p></p>
+				<label>Sexo: </label>
+				<p></p>
+				<label>CPF: </label>
+				<p></p>
+				<label>Data de Nascimento:</label>
+				<p></p>
+				<label>Nome da mãe:</label>
+				<p></p>
+				<label>Nome do pai: </label>
+				<p></p>
+				<label>Endereço: </label>
+				<p></p>
+				<label>Telefone: </label>
+				<p></p>
+				<label>Rg: </label>
+				<p></p>
+				<label>Email: </label>
+				<p></p>
+				<label>Portador de necessidades: </label>
+				<p></p>
+				<label>Ano de ingresso: </label>
+				<p></p>
+				<label>Status: </label>
+				<p></p>
 	
 			  </div>
-			  -->
+			  
 			</div>
 		  </div>
 		</div>
+		
+		<script type="text/javascript" src="/js/escola.js"></script>
 		
 </body>
 </html>
