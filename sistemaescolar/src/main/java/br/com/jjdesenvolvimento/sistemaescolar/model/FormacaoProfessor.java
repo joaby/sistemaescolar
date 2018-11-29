@@ -12,7 +12,7 @@ public enum FormacaoProfessor {
 	
 	private String descricao;
 	
-	FormacaoProfessor(String descricao) {
+	private FormacaoProfessor(String descricao) {
 		this.descricao = descricao;
 	}
 

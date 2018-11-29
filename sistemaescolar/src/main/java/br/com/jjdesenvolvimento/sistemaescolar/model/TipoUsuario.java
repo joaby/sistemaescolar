@@ -1,17 +1,17 @@
 package br.com.jjdesenvolvimento.sistemaescolar.model;
 
-public enum StatusAluno {
-
-	ATIVO("Ativo"),
-	INATIVO("Inativo"),
-	TRANSFERIDO("Transferido"),
-	CONCLUIDO("Concluído");
+public enum TipoUsuario {
 	
-	private StatusAluno(String descricao){
-		this.descricao = descricao;
-	}
+	ALUNO("Aluno"),
+	PROFESSOR("Professor"),
+	SECRETARIO("Secretário"),
+	ADMINISTRADOR("Administrador");
 	
 	private String descricao;
+	
+	private TipoUsuario(String descricao) {
+		this.descricao = descricao;
+	}
 
 	public String getDescricao() {
 		return descricao;
@@ -20,4 +20,7 @@ public enum StatusAluno {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
+
 }
