@@ -22,25 +22,22 @@
 <form class="w3-container">
   <p>
   <label>Nome Completo</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="nome"></p>
   
   <p>
   <label>Número de Matrícula</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="numeroMatricula"></p>
   <br/>
   
 	<div class="w3-row">
 	  <div class="w3-container w3-half">
 	  <label>Sexo:</label>
-	  <input class="w3-radio" type="radio" name="masculino" value="masculino" checked>
+	  <input class="w3-radio" type="radio" name="sexo" value="masculino" checked>
 		<label>Masculino</label>
 
-		<input class="w3-radio" type="radio" name="feminino" value="feminino">
+		<input class="w3-radio" type="radio" name="sexo" value="feminino">
 		<label>Feminino</label>
-
-		<input class="w3-radio" type="radio" name="outro" value="outro" disabled>
-		<label>Não sei (Desabilitado)</label>
-	   </div>
+		</div>
 	   
 		<br/>
 		<br/>
@@ -57,41 +54,37 @@
   
   <p>
   <label>Nome da Mãe</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="nomeMae"></p>
   
   <p>
   <label>Nome do Pai</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="nomePai"></p>
   
   <p>
   <label>Identidade (RG)</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="rg"></p>
   
   <p>
   <label>Cadastro de Pessoa Física (CPF)</label>
-  <input class="w3-input" type="text"></p>
-  
-  <p>
-  <label>Número de Inscrição Social (NIS)</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="cpf"></p>
   
   <p>
   <label>Endereço</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="endereco"></p>
   
   <p>
   <label>Telefone</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="telefone"></p>
   
   <p>
   <label>Email</label>
-  <input class="w3-input" type="text"></p>
+  <input class="w3-input" type="text" name="email"></p>
   
   <label>Portador de Necessidades Especiais:</label>
-  <input class="w3-radio" type="radio" name="necEspSim" value="necEspSim" checked>
+  <input class="w3-radio" type="radio" name="necEsp" value="necEspSim" checked>
 	<label>Sim</label>
 
-	<input class="w3-radio" type="radio" name="necEspNao" value="necEspNao">
+	<input class="w3-radio" type="radio" name="necEsp" value="necEspNao">
 	<label>Não</label>
   
   <br/>
@@ -99,10 +92,10 @@
   <br/>
   
   <label>Tipo de aluno:</label>
-  <input class="w3-radio" type="radio" name="novato" value="novato" checked>
+  <input class="w3-radio" type="radio" name="tipoAluno" value="novato" checked>
 	<label>Novato</label>
 
-	<input class="w3-radio" type="radio" name="veterano" value="veterano">
+	<input class="w3-radio" type="radio" name="tipoAluno" value="veterano">
 	<label>Veterano</label>
     
     <br/>
@@ -116,23 +109,14 @@
 	<br/>
 	<br/>
 	
-	<label>Série:</label>
+	<label>Status</label>
 	<select class="w3-select" name="option">
-  <option value="" disabled selected>Situação Escolar</option>
-  <option value="Infantil II">Infantil II</option>
-  <option value="Infantil III">Infantil III</option>
-  <option value="Infantil IV">Infantil IV</option>
-  <option value="Infantil V">Infantil V</option>
-  <option value="1ano">1º Ano</option>
-  <option value="2ano">2º Ano</option>
-  <option value="3ano">3º Ano</option>
-  <option value="4ano">4º Ano</option>
-  <option value="5ano">5º Ano</option>
-  <option value="6ano">6º Ano</option>
-  <option value="7ano">7º Ano</option>
-  <option value="8ano">8º Ano</option>
-  <option value="9ano">9º Ano</option>
-</select>
+  <option value="" disabled selected>Status do aluno</option>
+  <option value="ativo">Ativo</option>
+  <option value="inativo">Inativo</option>
+  <option value="tranferido">Transferido</option>
+  <option value="concluido">Concluído</option>
+  </select>
 	
 	<button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Salvar</button>
   
