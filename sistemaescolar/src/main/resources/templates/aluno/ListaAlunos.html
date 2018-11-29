@@ -33,13 +33,46 @@
       <td th:text="${aluno.nome}"></td>
       <td th:text="${aluno.sexo}"></td>
       <td th:text="${aluno.cpf}"></td>
-	  <td><i class="material-icons">visibility</i></td>
+	  <td><i class="material-icons" onclick="document.getElementById('modalExibicaoAluno').style.display='block'">visibility</i></td>
 	  <td><i class="material-icons">edit</i></td>
 	  <td><i class="material-icons">delete</i></td>
     </tr>
     
   </table>
 </div>
+
+	<div class="w3-container">
+		  
+		  <div id="modalExibicaoAluno" class="w3-modal">
+			<div class="w3-modal-content w3-animate-top w3-card-4">
+			  <header class="w3-container w3-teal"> 
+				<span onclick="document.getElementById('modalExibicaoAluno').style.display='none'" 
+				class="w3-button w3-display-topright">&times;</span>
+				<h2>Dados do Aluno</h2>
+			  </header> <p>Frase</p>
+			  <!--
+			  <div class="w3-container">
+				<p th:text = "Matrícula: + ${pessoa.matricula}"></p>
+				<p th:text = "Nome: + ${pessoa.nome}">Nome:</p>
+				<p th:text = "Sexo: + ${pessoa.sexo}">Sexo:</p>
+				<p th:text = "Data de Nascimento: + ${pessoa.dataNascimento}">Data de Nascimento:</p>
+				<p th:text = "Nome da Mãe: + ${pessoa.nomeMae}">Nome da Mãe:</p>
+				<p th:text = "Nome do Pai: + ${pessoa.nomePai}">Nome do Pai:</p>
+				<p th:text = "RG: + ${pessoa.rg}">RG:</p>
+				<p th:text = "CPF: + ${pessoa.cpf}">CPF:</p>
+				<p th:text = "Endereço: + ${pessoa.endereco}">Endereço:</p>
+				<p th:text = "Telefone: + ${pessoa.telefone}">Telefone:</p>
+				<p th:text = "Email: + ${pessoa.email}">Email:</p>
+				<p th:text = "Portador de necessidades: + ${pessoa.porNec}">Portador de necessidades:</p>
+				<p th:text = "Tipo de aluno: + ${pessoa.tipoAluno}">Tipo de aluno:</p>
+				<p th:text = "Data de ingresso: + ${pessoa.dtIngresso}">Data ingresso:</p>
+				<p th:text = "Status: + ${pessoa.status}">Status:</p>
+	
+			  </div>
+			  -->
+			</div>
+		  </div>
+		</div>
 		
 </body>
 </html>
