@@ -22,6 +22,16 @@ public class AlunoService {
 		return alunoRepository.findAll();
 	}
 	
+	public Aluno buscarPorId(Long matricula) {
+		try {
+			return alunoRepository.findById(matricula).get();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return new Aluno();
+		
+	}
+	
 	public void excluir(Long matricula){
 		alunoRepository.deleteById(matricula);
 	}

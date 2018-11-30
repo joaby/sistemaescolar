@@ -19,6 +19,7 @@ public class Aluno {
 	
 	@Id
 	private Long matricula;
+	private String senha;
 	private String nome;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -41,7 +42,7 @@ public class Aluno {
 	private List<Turma> turmas;
 	
 	public Aluno(){
-		turmas = new ArrayList<Turma>();
+		turmas = new ArrayList<Turma>();		
 	}
 	
 	
@@ -50,6 +51,7 @@ public class Aluno {
 	}
 	public void setMatricula(Long matricula) {
 		this.matricula = matricula;
+		this.senha = Long.toString(matricula);
 	}
 	public String getNome() {
 		return nome;
@@ -164,7 +166,14 @@ public class Aluno {
 		this.especial = especial;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

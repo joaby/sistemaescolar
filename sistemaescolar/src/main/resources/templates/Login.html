@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+	<div class="w3-container w3-display-container w3-card-4" style="height:600px">
+		<form action="/logar" method="post" class="w3-container w3-teal w3-display-middle" style="width:40%">
+			<h3 class="w3-center">Login</h3>
+			<div class="w3-row">
+			<label class="w3-col s3">Usuário</label>
+			<input class="w3-col s9" type="number" name="usuario" />
+			</div>
+			<br/>
+			<div class="w3-row">
+			<label class="w3-col s3">Senha</label>
+			<input class="w3-col s9" type="text" name="senha" />
+			</div>
+			<br/>
+			<div class="w3-row">
+			<label class="w3-col s3">Tipo de usuário</label>
+			<select class="w3-col s9" name="tipo">
+				<option th:each="usuario : ${todosTipoUsuario}" th:value="${usuario}" th:text="${usuario.descricao}"></option>
+			</select>
+			</div>
+			<br/>
+			<input type="submit" value="Entrar" />
+			<br/>
+		</form>
+	
+	</div>
+	
+	
+	<script type="text/javascript" src="/js/escola.js"></script>
+
+</body>
+</html>
