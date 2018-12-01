@@ -21,4 +21,9 @@ public class EscolaService {
 	public List<Escola> buscarTodas(){
 		return escolaRepository.findAll();
 	}
+	
+	public Escola buscarPorId(Long id) {
+		return escolaRepository.findById(id).get();
+	}
+	
 }

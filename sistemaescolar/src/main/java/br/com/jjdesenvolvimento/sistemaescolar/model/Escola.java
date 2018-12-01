@@ -16,10 +16,10 @@ public class Escola {
 	private Long id;
 	private String nome;
 	
-	@OneToMany
+	@OneToMany(mappedBy="escola")
 	private List<Turma> turmas;
 	
-	Escola(){
+	public Escola(){
 		this.turmas = new ArrayList<Turma>();
 	}
 

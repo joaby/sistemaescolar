@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Listar Escolas</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	</head>
+	<body>
+	
+  <div class="w3-container">
+  <h2>Lista de Escolas</h2>
+  
+  <a class="w3-button w3-teal" href="/escola/nova">Nova escola</a>
+  
+  <table class="w3-table-all w3-card-4">
+    <tr>
+   	  <th>Id</th> 	
+      <th>Nome</th>
+      <th>Editar</th>
+      <th>Escluir</th>
+      <th>Adicionar Turma</th>
+       <th>Visualizar Turmas</th>
+    </tr>
+    <tr th:each="escola : ${escolas}">
+      <td th:text="${escola.id}"></td>
+      <td th:text="${escola.nome}"></td>    
+	  <td><i class="material-icons">edit</i></td>
+	  <td><i class="material-icons">delete</i></td>
+	  <td><a th:href="@{/turma/nova/{idEscola}(idEscola=${escola.id})}"><i class="material-icons">add</i></a></td>
+	  <td><a th:href="@{/escola/{idEscola}/turmas(idEscola=${escola.id})}"><i class="material-icons">visibility</i></a></td>
+    </tr>
+    
+  </table>
+  </div>
+
+  <script type="text/javascript" src="/js/escola.js"></script>
+		
+</body>
+</html>

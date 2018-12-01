@@ -22,6 +22,10 @@ public class TurmaService {
 		return turmaRepository.findAll();
 	}
 	
+	public Turma buscarPorId(Long id) {
+		return turmaRepository.findById(id).get();
+	}
+	
 	public void excluir(Long id) {
 		turmaRepository.deleteById(id);
 	}

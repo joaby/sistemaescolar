@@ -6,7 +6,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,14 +20,18 @@ public class Turma {
 	private String nome;
 	private int ano;
 	
+	@ManyToOne
+	@JoinColumn(name="escola_id")
+	private Escola escola;
 	@OneToMany
 	private List<Disciplina> disciplinas;
 	@ManyToMany(mappedBy="turmas")
 	private List<Aluno> alunos;
 	
-	Turma(){
-		disciplinas = new ArrayList<Disciplina>();
-		alunos = new ArrayList<Aluno>();
+	public Turma(){
+		this.escola = new Escola();
+		this.disciplinas = new ArrayList<Disciplina>();
+		this.alunos = new ArrayList<Aluno>();
 	}
 
 	public Long getId() {
@@ -67,5 +73,14 @@ public class Turma {
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
 	}
+
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
+	
 
 }
