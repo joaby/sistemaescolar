@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -17,14 +19,18 @@ public class Disciplina {
 	private Long id;
 	private String nome;
 	
-	@ManyToOne
-	private Professor professor;
+	@ManyToMany
+	private List<Professor> professores;
 	@OneToMany
 	private List<Nota> notas;
+	@ManyToOne
+	@JoinColumn(name="turma_id")
+	private Turma turma;
 	
-	Disciplina(){
-		professor = new Professor();
-		notas = new ArrayList<Nota>();
+	public Disciplina(){
+		this.professores = new ArrayList<Professor>();
+		this.notas = new ArrayList<Nota>();
+		this.turma = new Turma();
 	}
 	
 	public Long getId() {
@@ -40,14 +46,6 @@ public class Disciplina {
 		this.nome = nome;
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
 	public List<Nota> getNotas() {
 		return notas;
 	}
@@ -55,5 +53,22 @@ public class Disciplina {
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
+	
 
 }

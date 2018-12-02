@@ -18,9 +18,9 @@
 	<a class="w3-display-right w3-margin-right w3-teal w3-button" href="/escola">Listar escolas</a>
 	</div>
 	
-	<form action="/diciplina" method="post" class="w3-container" th:object="${disciplina}">
+	<form th:action="@{/disciplina/{idTurma}(idTurma=${idTurma})}" method="post" class="w3-container" th:object="${disciplina}">
 	  <p>
-	    <label>Nome Completo</label>
+	    <label>Nome</label>
 	    <input class="w3-input" type="text" th:field="*{nome}">
 	  </p>
 	  

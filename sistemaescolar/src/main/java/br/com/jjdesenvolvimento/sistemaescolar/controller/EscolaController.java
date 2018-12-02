@@ -45,6 +45,7 @@ public class EscolaController {
 		Escola escola = escolaService.buscarPorId(idEscola);
 		ModelAndView mv = new ModelAndView("turma/ListaTurmas");
 		mv.addObject("turmas", escola.getTurmas());
+		mv.addObject("infoEscola", escola.toString());
 		return mv;
 	}
 	

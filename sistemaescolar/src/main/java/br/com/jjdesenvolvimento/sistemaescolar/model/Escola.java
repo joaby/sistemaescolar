@@ -47,5 +47,9 @@ public class Escola {
 		this.turmas = turmas;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getId() + " : " + this.getNome();
+	}
 	
 }

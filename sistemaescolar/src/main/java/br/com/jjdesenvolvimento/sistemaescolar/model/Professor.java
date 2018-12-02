@@ -1,9 +1,13 @@
 package br.com.jjdesenvolvimento.sistemaescolar.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Professor {
@@ -17,7 +21,11 @@ public class Professor {
 	private FormacaoProfessor formacao;
 	private String curso;
 	
-	Professor(){
+	@ManyToMany(mappedBy="professores")
+	private List<Disciplina> disciplinas;
+	
+	public Professor(){
+		this.setDisciplinas(new ArrayList<Disciplina>());
 	}
 	
 	public Long getCpf() {
@@ -87,6 +95,14 @@ public class Professor {
 		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
 	

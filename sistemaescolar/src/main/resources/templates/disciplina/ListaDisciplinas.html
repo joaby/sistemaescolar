@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Listar de turma</title>
+		<title>Lista de disciplinas</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,8 +14,7 @@
 	<body>
 	
   <div class="w3-container">
-  <h2>Lista de Turmas</h2>
-  <p th:text="${infoEscola}"></p>
+  <h2>Lista de Disciplinas</h2>
   
   <a class="w3-button w3-teal" href="/escola">Listar escolas</a>
   
@@ -23,20 +22,15 @@
     <tr>
    	  <th>Id</th> 	
       <th>Nome</th>
-      <th>Ano</th>
       <th>Editar</th>
       <th>Escluir</th>
-     <th>Adicionar disciplina</th>
-     <th>Visualizar disciplinas</th>
     </tr>
-    <tr th:each="turma : ${turmas}">
-      <td th:text="${turma.id}"></td>
-      <td th:text="${turma.nome}"></td>  
-      <td th:text="${turma.ano}"></td>  
+    <tr th:each="disciplina : ${disciplinas}">
+      <td th:text="${disciplina.id}"></td>
+      <td th:text="${disciplina.nome}"></td>  
 	  <td><i class="material-icons">edit</i></td>
 	  <td><i class="material-icons">delete</i></td>
-	  <td><a th:href="@{/disciplina/nova/{idTurma}(idTurma=${turma.id})}"><i class="material-icons">add</i></a></td>
-	  <td><a th:href="@{/disciplina/{idTurma}(idTurma=${turma.id})}"><i class="material-icons">visibility</i></a></td>
+
     </tr>
     
   </table>

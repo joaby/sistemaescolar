@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,11 +21,13 @@ public class Turma {
 	private Long id;
 	private String nome;
 	private int ano;
+	@Enumerated(EnumType.STRING)
+	private TurnoTurma turno; 
 	
 	@ManyToOne
 	@JoinColumn(name="escola_id")
 	private Escola escola;
-	@OneToMany
+	@OneToMany(mappedBy="turma")
 	private List<Disciplina> disciplinas;
 	@ManyToMany(mappedBy="turmas")
 	private List<Aluno> alunos;
@@ -56,6 +60,14 @@ public class Turma {
 
 	public void setAno(int ano) {
 		this.ano = ano;
+	}
+
+	public TurnoTurma getTurno() {
+		return turno;
+	}
+
+	public void setTurno(TurnoTurma turno) {
+		this.turno = turno;
 	}
 
 	public List<Disciplina> getDisciplinas() {
