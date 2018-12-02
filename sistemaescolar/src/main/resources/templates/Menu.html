@@ -9,7 +9,20 @@
 	    <i class="fa fa-remove"></i>
 	  </a>
 	  <h4 class="w3-bar-item"><b>Menu</b></h4>
-	  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+	  <div class="w3-dropdown-hover">
+	    <button class="w3-button">Escola  <i class="fa fa-caret-down"></i></button>
+	    <div class="w3-dropdown-content w3-bar-block">
+	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/escola/nova}">Salvar</a>
+	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/escola}">Listar</a>
+	    </div>
+	  </div>
+	  <div class="w3-dropdown-hover">
+	    <button class="w3-button">Aluno  <i class="fa fa-caret-down"></i></button>
+	    <div class="w3-dropdown-content w3-bar-block">
+	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/aluno/novo}">Salvar</a>
+	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/aluno}">Listar</a>
+	    </div>
+	  </div>
 	  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
 	  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
 	  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>

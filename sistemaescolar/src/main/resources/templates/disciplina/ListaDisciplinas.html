@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>Lista de disciplinas</title>
+<head>
+<meta charset="UTF-8">
+<title>Lista de disciplinas</title>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/css/style.css">
 
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-	</head>
-	<body>
-	
-  <div class="w3-container">
-  <h2>Lista de Disciplinas</h2>
+</head>
+<body>
+	<header th:insert="~{Cabecalho :: cabecalho}"></header>
+  	<div th:insert="~{Menu :: menu}"></div>
+  	
+  <div class="w3-main w3-container" style="margin-left:250px; margin-top:80px;">
   
-  <a class="w3-button w3-teal" href="/escola">Listar escolas</a>
-  
+  <div class="w3-display-container w3-panel w3-border w3-leftbar">
+		<h2>Lista de Disciplinas</h2>
+		<a class="w3-display-right w3-margin-right w3-teal w3-button" href="/escola">Lista escolas</a>
+  </div>
   <table class="w3-table-all w3-card-4">
     <tr>
    	  <th>Id</th> 	
@@ -34,6 +39,7 @@
     </tr>
     
   </table>
+  <footer th:insert="~{Rodape :: rodape}"></footer>
   </div>
 
   <script type="text/javascript" src="/js/escola.js"></script>

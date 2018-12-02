@@ -1,5 +1,8 @@
 package br.com.jjdesenvolvimento.sistemaescolar.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Turma;
+import br.com.jjdesenvolvimento.sistemaescolar.model.TurnoTurma;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.TurmaService;
 
@@ -42,5 +46,10 @@ public class TurmaController {
 	@ModelAttribute("turma")
 	public Turma turmaVazia() {
 		return new Turma();
+	}
+	
+	@ModelAttribute("todosTurnos")
+	public List<TurnoTurma> todosTurnos() {
+		return Arrays.asList(TurnoTurma.values());
 	}
 }
