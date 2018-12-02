@@ -33,6 +33,11 @@ public class LonginController {
 		return "Login";
 	}
 	
+	@RequestMapping("/home")
+	public String home(){
+		return "Home";
+	}
+	
 	@RequestMapping(value="/logar", method=RequestMethod.POST)
 	public String logar(Long usuario, String senha, TipoUsuario tipo) {
 		if(tipo.equals(TipoUsuario.ALUNO)) {

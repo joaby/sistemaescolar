@@ -1,113 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<title>Sistema Escolar</title>
 <meta charset="UTF-8">
-<title>Login</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-</head>
+<link rel="stylesheet"
+	href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="css/style.css">
 <body>
-	
-	
-	<div class="w3-container w3-margin">
-	<div class="w3-card-4">
 
-	
-	<div class="w3-container w3-display-container w3-blue">
-	<h2>Cadastro de Aluno</h2>
-	<a class="w3-display-right w3-margin-right w3-teal w3-button" href="/aluno">Listar alunos</a>
-	</div>
-	
-<form action="/aluno" method="post" class="w3-container" th:object="${aluno}">
-  <p>
-  <label>Nome Completo</label>
-  <input class="w3-input" type="text" th:field="*{nome}"></p>
-  
-  <p>
-  <label>Número de Matrícula</label>
-  <input class="w3-input" type="text" th:field="*{matricula}"></p>
-  <br/>
-  
-	<div class="w3-row">
-	  <div class="w3-container w3-half">
-	  <label>Sexo:</label>
-	  <input class="w3-radio" type="radio" th:field="*{sexo}" th:value="M" th:text="Masculino">
-	  <input class="w3-radio" type="radio" th:field="*{sexo}" th:value="F" th:text="Feminina">
-		
-		</div>
-	   
-		<br/>
-		<br/>
-		<br/>
-	   
-		<div class="w3-container w3-half">
-		<label>Data de Nascimento</label>
-		<input type="text" th:field="*{dataNascimento}">
-		</div>
-	</div>
-	
-	<br/>
-	<br/>
-  
-  <p>
-  <label>Nome da Mãe</label>
-  <input class="w3-input" type="text" th:field="*{nomeMae}"></p>
-  
-  <p>
-  <label>Nome do Pai</label>
-  <input class="w3-input" type="text" th:field="*{nomePai}"></p>
-  
-  <p>
-  <label>Identidade (RG)</label>
-  <input class="w3-input" type="text" th:field="*{rg}"></p>
-  
-  <p>
-  <label>Cadastro de Pessoa Física (CPF)</label>
-  <input class="w3-input" type="text" th:field="*{cpf}"></p>
-  
-  <p>
-  <label>Endereço</label>
-  <input class="w3-input" type="text" th:field="*{endereco}"></p>
-  
-  <p>
-  <label>Telefone</label>
-  <input class="w3-input" type="text" th:field="*{telefone}"></p>
-  
-  <p>
-  <label>Email</label>
-  <input class="w3-input" type="text" th:field="*{email}"></p>
-  
-  <label>Portador de Necessidades Especiais:</label>
-  <input class="w3-radio" type="radio" th:field="*{especial}" th:value="true" th:text="Sim">
-  <input class="w3-radio" type="radio" th:field="*{especial}" th:value="false" th:text="Não">
-	
+	<header th:insert="~{Cabecalho :: cabecalho}"></header>
 
-	
-  
-  <br/>
-  <br/>
-  <br/>
-   
-   	<label>Ano de Ingresso:</label>
-    <input type="text" th:field="*{anoIngresso}">
-	
-	<br/>
-	<br/>
-	<br/>
-	
-	<label>Status</label>
-	<select class="w3-select" th:field="*{status}">
-	  <option th:each="status : ${todosStatusAluno}" th:value="${status}" th:text="${status.descricao}"></option>
-	</select>
-	
-	<button type="submit" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Salvar</button>
-  
-  
-</form>
-	
+	<div th:insert="~{Menu :: menu}"></div>
+
+	<div class="w3-main" style="margin-left: 250px; margin-top: 80px;">
+
+		<div class="w3-display-container w3-panel w3-border w3-leftbar">
+			<h2>Cadastro de Aluno</h2>
+			<a class="w3-display-right w3-margin-right w3-teal w3-button"
+				href="/aluno">Listar alunos</a>
+		</div>
+
+		<form action="/aluno" method="post" th:object="${aluno}">
+			<p>
+				<label>Nome Completo</label> <input class="w3-input" type="text"
+					th:field="*{nome}">
+			</p>
+
+			<p>
+				<label>Número de Matrícula</label> <input class="w3-input"
+					type="text" th:field="*{matricula}">
+			</p>
+			<br />
+
+			<div class="w3-row">
+				<div class="w3-container w3-half">
+					<label>Sexo:</label> <input class="w3-radio" type="radio"
+						th:field="*{sexo}" th:value="M" th:text="Masculino"> <input
+						class="w3-radio" type="radio" th:field="*{sexo}" th:value="F"
+						th:text="Feminina">
+				</div>
+
+
+				<div class="w3-container w3-half">
+					<label>Data de Nascimento</label> <input type="text"
+						th:field="*{dataNascimento}">
+				</div>
+			</div>
+
+			<br /> 
+
+			<p>
+				<label>Nome da Mãe</label> <input class="w3-input" type="text"
+					th:field="*{nomeMae}">
+			</p>
+
+			<p>
+				<label>Nome do Pai</label> <input class="w3-input" type="text"
+					th:field="*{nomePai}">
+			</p>
+
+			<p>
+				<label>Identidade (RG)</label> <input class="w3-input" type="text"
+					th:field="*{rg}">
+			</p>
+
+			<p>
+				<label>Cadastro de Pessoa Física (CPF)</label> <input
+					class="w3-input" type="text" th:field="*{cpf}">
+			</p>
+
+			<p>
+				<label>Endereço</label> <input class="w3-input" type="text"
+					th:field="*{endereco}">
+			</p>
+
+			<p>
+				<label>Telefone</label> <input class="w3-input" type="text"
+					th:field="*{telefone}">
+			</p>
+
+			<p>
+				<label>Email</label> <input class="w3-input" type="text"
+					th:field="*{email}">
+			</p>
+
+			<label>Portador de Necessidades Especiais:</label> 
+			<input
+				class="w3-radio" type="radio" th:field="*{especial}" th:value="true"
+				th:text="Sim"> <input class="w3-radio" type="radio"
+				th:field="*{especial}" th:value="false" th:text="Não"> <br />
+			<p>
+			<label>Ano de Ingresso:</label> 
+			<input type="text" th:field="*{anoIngresso}"> <br /> 
+			</p>
+			<p>
+			<label>Status</label>
+			<select class="w3-select" th:field="*{status}">
+				<option th:each="status : ${todosStatusAluno}" th:value="${status}"
+					th:text="${status.descricao}"></option>
+			</select>
+            </p>
+			<button type="submit"
+				class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Salvar</button>
+
+		</form>
+		<footer th:insert="~{Rodape :: rodape}"></footer>
 	</div>
-	</div>
+	<script src="js/escola.js"></script>
 </body>
 </html>
