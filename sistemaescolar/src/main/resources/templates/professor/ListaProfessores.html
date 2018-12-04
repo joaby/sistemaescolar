@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<title>Sistema Escolar</title>
 <meta charset="UTF-8">
-<title>Lista Escolas</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
@@ -11,44 +9,43 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="/css/style.css">
-
-</head>
 <body>
-
-	<header th:insert="~{Cabecalho :: cabecalho}"></header>
+	
+  <header th:insert="~{Cabecalho :: cabecalho}"></header>
   
-  	<div th:insert="~{Menu :: menu}"></div>
+  <div th:insert="~{Menu :: menu}"></div>
 	
   <div class="w3-main w3-container" style="margin-left:250px; margin-top:80px;">
- 
-  <div class="w3-container w3-center">
-    <h2>Escolas</h2>
-  </div>
-	
-  <table class="w3-table-all w3-card-4">
+  <h4>Professores</h4>
+  
+  <table class="w3-table-all">
     <tr>
-   	  <th>Id</th> 	
+   	  <th>Cpf</th> 	
       <th>Nome</th>
-      <th>Editar</th>
-      <th>Excluir</th>
-      <th>Turmas</th>
+      <th>Telefone</th>
+      <th>Email</th>
+	  <th>Formação</th>
+	  <th>Curso</th>
+	  <th>Editar</th>
+	  <th>Deletar</th>
     </tr>
-    <tr th:each="escola : ${escolas}">
-      <td th:text="${escola.id}"></td>
-      <td th:text="${escola.nome}"></td>    
+    <tr th:each="professor : ${professores}">
+      <td th:text="${professor.cpf}"></td>
+      <td th:text="${professor.nome}"></td>
+      <td th:text="${professor.telefone}"></td>
+      <td th:text="${professor.email}"></td>
+      <td th:text="${professor.formacao.descricao}"></td>
+      <td th:text="${professor.curso}"></td>
+      
 	  <td><i class="material-icons">edit</i></td>
 	  <td><i class="material-icons">delete</i></td>
-	  <td>
-	    <a th:href="@{/turma/nova/{idEscola}(idEscola=${escola.id})}"><i class="material-icons">add</i></a>
-	    <a th:href="@{/escola/{idEscola}/turmas(idEscola=${escola.id})}"><i class="material-icons">visibility</i></a>
-	  </td>
     </tr>
     
   </table>
+  
   <footer th:insert="~{Rodape :: rodape}"></footer>
   </div>
-
   <script type="text/javascript" src="/js/escola.js"></script>
-		
+
 </body>
 </html>

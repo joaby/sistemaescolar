@@ -29,7 +29,10 @@ public class TurmaController {
 	@RequestMapping("/nova/{idEscola}")
 	public ModelAndView novo(@PathVariable Long idEscola) {
 		ModelAndView mv = new ModelAndView("turma/CadastroTurma");
+		Escola escola = escolaService.buscarPorId(idEscola);
 		mv.addObject("idEscola", idEscola);
+		mv.addObject("infoEscola", escola.toString());
+		mv.addObject("turmas", escola.getTurmas());
 		return mv;
 	}
 	
@@ -38,8 +41,21 @@ public class TurmaController {
 		Escola escola = escolaService.buscarPorId(idEscola);
 		turma.setEscola(escola);
 		turmaService.salvar(turma);
-		ModelAndView mv = new ModelAndView("escola/ListaEscolas");
-		mv.addObject("escolas", escolaService.buscarTodas());
+		ModelAndView mv = new ModelAndView("turma/CadastroTurma");
+		mv.addObject("idEscola", idEscola);
+		mv.addObject("turmas", escola.getTurmas());
+		mv.addObject("infoEscola", escola.toString());
+		return mv;
+	}
+	
+	@RequestMapping("{idTurma}")
+	public ModelAndView gereciarTurma(@PathVariable Long idTurma) {
+		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
+		Turma turma = turmaService.buscarPorId(idTurma);
+		mv.addObject("infoEscola", turma.getEscola().toString());
+		mv.addObject("infoTurma", turma.getNome());
+		mv.addObject("alunos", turma.getAlunos());
+		mv.addObject("disciplinas", turma.getDisciplinas());
 		return mv;
 	}
 	
