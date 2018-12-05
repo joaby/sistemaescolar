@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -40,9 +41,12 @@ public class Aluno {
 	
 	@ManyToMany
 	private List<Turma> turmas;
+	@OneToMany(mappedBy="aluno")
+	private List<Nota> notas;
 	
 	public Aluno(){
-		turmas = new ArrayList<Turma>();		
+		this.turmas = new ArrayList<Turma>();	
+		this.notas = new ArrayList<Nota>();
 	}
 	
 	
@@ -174,6 +178,16 @@ public class Aluno {
 		this.senha = senha;
 	}
 	
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.jjdesenvolvimento.sistemaescolar.model.Aluno;
+import br.com.jjdesenvolvimento.sistemaescolar.model.Disciplina;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Turma;
 import br.com.jjdesenvolvimento.sistemaescolar.model.TurnoTurma;
+import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
+import br.com.jjdesenvolvimento.sistemaescolar.service.DisciplinaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.TurmaService;
 
@@ -25,6 +29,10 @@ public class TurmaController {
 	private TurmaService turmaService;
 	@Autowired
 	private EscolaService escolaService;
+	@Autowired
+	private AlunoService alunoService;
+	@Autowired
+	private DisciplinaService disciplinaService;
 	
 	@RequestMapping("/nova/{idEscola}")
 	public ModelAndView novo(@PathVariable Long idEscola) {
@@ -54,6 +62,55 @@ public class TurmaController {
 		Turma turma = turmaService.buscarPorId(idTurma);
 		mv.addObject("infoEscola", turma.getEscola().toString());
 		mv.addObject("infoTurma", turma.getNome());
+		mv.addObject("idTurma", turma.getId());
+		mv.addObject("alunos", turma.getAlunos());
+		mv.addObject("disciplinas", turma.getDisciplinas());
+		return mv;
+	}
+	
+	@RequestMapping(value="{idTurma}/aluno", method=RequestMethod.POST)
+	public ModelAndView salvarAlunoTurma(@PathVariable Long idTurma, Aluno aluno) {
+		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
+		Turma turma = turmaService.buscarPorId(idTurma);
+		Aluno a = alunoService.buscarPorId(aluno.getMatricula());
+		turma.getAlunos().add(a);
+		a.getTurmas().add(turma);
+		turmaService.salvar(turma);
+		alunoService.salvar(a);
+		mv.addObject("infoEscola", turma.getEscola().toString());
+		mv.addObject("infoTurma", turma.getNome());
+		mv.addObject("idTurma", turma.getId());
+		mv.addObject("alunos", turma.getAlunos());
+		mv.addObject("disciplinas", turma.getDisciplinas());
+		return mv;
+	}
+	
+	@RequestMapping(value="{idTurma}/aluno/{idAluno}", method=RequestMethod.DELETE)
+	public ModelAndView excluirAlunoTurma(@PathVariable Long idTurma, @PathVariable Long idAluno) {
+		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
+		Turma turma = turmaService.buscarPorId(idTurma);
+		Aluno aluno = alunoService.buscarPorId(idAluno);
+		turma.getAlunos().remove(aluno);
+		aluno.getTurmas().remove(turma);
+		turmaService.salvar(turma);
+		alunoService.salvar(aluno);
+		mv.addObject("infoEscola", turma.getEscola().toString());
+		mv.addObject("infoTurma", turma.getNome());
+		mv.addObject("idTurma", turma.getId());
+		mv.addObject("alunos", turma.getAlunos());
+		mv.addObject("disciplinas", turma.getDisciplinas());
+		return mv;
+	}
+	
+	@RequestMapping(value="{idTurma}/disciplina", method=RequestMethod.POST)
+	public ModelAndView salvarDisciplinaTurma(@PathVariable Long idTurma, Disciplina disciplina) {
+		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
+		Turma turma = turmaService.buscarPorId(idTurma);
+		disciplina.setTurma(turma);
+		disciplinaService.salvar(disciplina);
+		mv.addObject("infoEscola", turma.getEscola().toString());
+		mv.addObject("infoTurma", turma.getNome());
+		mv.addObject("idTurma", turma.getId());
 		mv.addObject("alunos", turma.getAlunos());
 		mv.addObject("disciplinas", turma.getDisciplinas());
 		return mv;
@@ -62,6 +119,16 @@ public class TurmaController {
 	@ModelAttribute("turma")
 	public Turma turmaVazia() {
 		return new Turma();
+	}
+	
+	@ModelAttribute("aluno")
+	public Aluno alunoVAzio() {
+		return new Aluno();
+	}
+	
+	@ModelAttribute("disciplina")
+	public Disciplina disciplinaVazia() {
+		return new Disciplina();
 	}
 	
 	@ModelAttribute("todosTurnos")

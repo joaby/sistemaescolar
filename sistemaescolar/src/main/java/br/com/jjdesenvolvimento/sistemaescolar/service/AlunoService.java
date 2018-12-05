@@ -23,12 +23,7 @@ public class AlunoService {
 	}
 	
 	public Aluno buscarPorId(Long matricula) {
-		try {
-			return alunoRepository.findById(matricula).get();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return new Aluno();
+		return alunoRepository.findById(matricula).get();	
 		
 	}
 	

@@ -21,7 +21,7 @@ public class Disciplina {
 	
 	@ManyToMany
 	private List<Professor> professores;
-	@OneToMany
+	@OneToMany(mappedBy="disciplina")
 	private List<Nota> notas;
 	@ManyToOne
 	@JoinColumn(name="turma_id")

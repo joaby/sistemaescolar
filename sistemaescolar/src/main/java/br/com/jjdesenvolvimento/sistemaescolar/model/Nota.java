@@ -3,6 +3,7 @@ package br.com.jjdesenvolvimento.sistemaescolar.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,10 +16,15 @@ public class Nota {
 	private float nota;
 	
 	@ManyToOne
+	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
+	@ManyToOne
+	@JoinColumn(name="disciplina_id")
+	private Disciplina disciplina;
 	
-	Nota(){
-		aluno = new Aluno();
+	public Nota(){
+		this.aluno = new Aluno();
+		this.disciplina = new Disciplina();
 	}
 	
 	public Long getId() {
@@ -44,6 +50,14 @@ public class Nota {
 	}
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 

@@ -25,31 +25,46 @@
 	  <p th:text="${infoEscola}"></p>
     </div>
 	
-	<div class="w3-bar w3-teal">
+	<div class="w3-bar w3-dark-grey">
 	  <button class="w3-bar-item w3-button" onclick="openOpcao('Alunos')">Alunos</button>
 	  <button class="w3-bar-item w3-button" onclick="openOpcao('Disciplinas')">Disciplinas</button>
 	</div>
 
   <div id="Alunos" class="w3-container opcao">
     <h2>Alunos</h2>
+    <form th:action="@{/turma/{idTurma}/aluno(idTurma=${idTurma})}" method="post" th:object="${aluno}">
+      <input type="text" class="w3-input w3-border" th:field="*{matricula}" placeholder="Matrícula" />
+      <input type="submit" class="w3-button w3-section w3-green w3-ripple w3-padding" value="Adicionar aluno" />
+    </form>
     <table class="w3-table-all w3-card-4">
 	    <tr>
 	   	  <th>Matrícula</th> 	
 	      <th>Nome Completo</th>
 	      <th>Sexo</th>
 	      <th>CPF</th>
+	      <th>Excluir</th>
 	    </tr>
 	    <tr th:each="aluno : ${alunos}">
 	      <td th:text="${aluno.matricula}"></td>
 	      <td th:text="${aluno.nome}"></td>
 	      <td th:text="${aluno.sexo}"></td>
 	      <td th:text="${aluno.cpf}"></td>
+	      <td>
+	      	<form th:action="@{/turma/{idTurma}/aluno/{idAluno}(idTurma=${idTurma}, idAluno=${aluno.matricula})}" method="post">
+	      		<input type="hidden" name="_method" value="DELETE">
+	      		<input type="submit" value="Excluir">
+	      	</form>
+	      </td>
 	    </tr>   
 	  </table>
   </div>
 
   <div id="Disciplinas" class="w3-container opcao" style="display:none">
     <h2>Disciplinas</h2>
+    <form th:action="@{/turma/{idTurma}/disciplina(idTurma=${idTurma})}" method="post" th:object="${disciplina}">
+	  <input class="w3-input w3-border" type="text" th:field="*{nome}" placeholder="Nome">
+	  <button type="submit" class="w3-button w3-section w3-green w3-ripple w3-padding">Adicionar disciplina</button>	  
+	</form>
     <table class="w3-table-all w3-card-4">
 	    <tr>
 	   	  <th>Id</th> 	
