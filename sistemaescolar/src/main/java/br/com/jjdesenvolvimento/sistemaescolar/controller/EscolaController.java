@@ -1,5 +1,7 @@
 package br.com.jjdesenvolvimento.sistemaescolar.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
+import br.com.jjdesenvolvimento.sistemaescolar.model.Turma;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
 
 @Controller
@@ -44,7 +47,34 @@ public class EscolaController {
 	public ModelAndView buscarTodasTurmas(@PathVariable Long idEscola) {
 		Escola escola = escolaService.buscarPorId(idEscola);
 		ModelAndView mv = new ModelAndView("turma/ListaTurmas");
-		mv.addObject("turmas", escola.getTurmas());
+		Calendar hoje = Calendar.getInstance();
+		int anoAtual = hoje.get(Calendar.YEAR);
+		List<Turma> turmas = escola.getTurmas();
+		List<Turma> turmasAnoAtual = new ArrayList<Turma>();
+		for (int i = 0; i < turmas.size(); i++) {
+			if (turmas.get(i).getAno() == anoAtual) {
+				turmasAnoAtual.add(turmas.get(i));
+			}
+		}
+		mv.addObject("idEscola", idEscola);
+		mv.addObject("turmas", turmasAnoAtual);
+		mv.addObject("infoEscola", escola.toString());
+		return mv;
+	}
+	
+	@RequestMapping("/{idEscola}/turmas/ano")
+	public ModelAndView buscarTurmasPorAno(@PathVariable Long idEscola, int ano) {
+		Escola escola = escolaService.buscarPorId(idEscola);
+		ModelAndView mv = new ModelAndView("turma/ListaTurmas");
+		List<Turma> turmas = escola.getTurmas();
+		List<Turma> turmasAno = new ArrayList<Turma>();
+		for (int i = 0; i < turmas.size(); i++) {
+			if (turmas.get(i).getAno() == ano) {
+				turmasAno.add(turmas.get(i));
+			}
+		}
+		mv.addObject("idEscola", idEscola);
+		mv.addObject("turmas", turmasAno);
 		mv.addObject("infoEscola", escola.toString());
 		return mv;
 	}

@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
 <body>
   
   <div th:fragment="menu">
     
-    <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
-	  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-theme-l4 w3-border w3-round-xlarge w3-animate-left" style="margin-top:10px; margin-left:6px;" id="mySidebar">
+	  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
 	    <i class="fa fa-remove"></i>
 	  </a>
-	  <h4 class="w3-bar-item"><b>Menu</b></h4>
-	  <div class="w3-dropdown-hover">
-	    <button class="w3-button">Escola  <i class="fa fa-caret-down"></i></button>
-	    <div class="w3-dropdown-content w3-bar-block">
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/escola/nova}">Nova</a>
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/escola}">Listar</a>
-	    </div>
-	  </div>
-	  <div class="w3-dropdown-hover">
-	    <button class="w3-button">Aluno  <i class="fa fa-caret-down"></i></button>
-	    <div class="w3-dropdown-content w3-bar-block">
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/aluno/novo}">Novo</a>
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/aluno}">Listar</a>
-	    </div>
-	  </div>
-	  <div class="w3-dropdown-hover">
-	    <button class="w3-button">Professor  <i class="fa fa-caret-down"></i></button>
-	    <div class="w3-dropdown-content w3-bar-block">
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/professor/novo}">Novo</a>
-	      <a class="w3-bar-item w3-button w3-hover-black" th:href="@{/professor}">Listar</a>
-	    </div>
-	  </div>
+	  <h4 class="w3-bar-item w3-text-red"><b>Área do Secretário</b></h4>
+	  	 <h5 class="w3-bar-item w3-theme-l2">ESCOLA</h5>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/escola/nova}">Nova</a>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/escola}">Listar</a>
+	     <h5 class="w3-bar-item w3-theme-l2">ALUNO</h5>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/aluno/novo}">Novo</a>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/aluno}">Listar</a>
+	     <h5 class="w3-bar-item w3-theme-l2">PROFESSOR</h5>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/professor/novo}">Novo</a>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/professor}">Listar</a>
 
 	</nav>
 
