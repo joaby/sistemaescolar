@@ -9,6 +9,7 @@ public class Secretario {
 	@Id
 	private Long cpf;
 	private String nome;
+	private String senha;
 	
 	public Long getCpf() {
 		return cpf;
@@ -21,6 +22,12 @@ public class Secretario {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	@Override
@@ -45,8 +52,6 @@ public class Secretario {
 		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 
 }

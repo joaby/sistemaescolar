@@ -9,7 +9,7 @@ import br.com.jjdesenvolvimento.sistemaescolar.model.Professor;
 import br.com.jjdesenvolvimento.sistemaescolar.repository.ProfessorRepository;
 
 @Service
-public class ProfessorService {
+public class ProfessorService{
 	
 	@Autowired
 	private ProfessorRepository professorRepository;
@@ -20,6 +20,14 @@ public class ProfessorService {
 	
 	public List<Professor> buscarTodos(){
 		return professorRepository.findAll();
+	}
+	
+	public Professor buscarPorCpf(Long cpf) {
+		return professorRepository.findById(cpf).get();
+	}
+	
+	public Professor buscarPorLogin(String login) {
+		return professorRepository.findByLogin(login);
 	}
 	
 	public void excluir(Long cpf) {

@@ -6,11 +6,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Professor {
+public class Professor{
 	
 	@Id
 	private Long cpf;
@@ -21,11 +22,17 @@ public class Professor {
 	private FormacaoProfessor formacao;
 	private String curso;
 	
+	private String login;
+	private String senha;
+	
 	@ManyToMany(mappedBy="professores")
 	private List<Disciplina> disciplinas;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Role> roles;
 	
 	public Professor(){
 		this.setDisciplinas(new ArrayList<Disciplina>());
+		this.setRoles(new ArrayList<Role>());
 	}
 	
 	public Long getCpf() {
@@ -104,7 +111,29 @@ public class Professor {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
-	
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
 }

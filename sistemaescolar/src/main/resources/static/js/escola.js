@@ -42,3 +42,36 @@ function exibeAluno(event){
 	
 	document.getElementById('modalExibicaoAluno').style.display='block'
 }
+
+//codigo jquery
+$(document).ready(function(){
+	//deleta profrofessor de uma disciplina
+	$('.btn-deleta-prof').click(function(event){
+		event.preventDefault();
+		
+		var botao = $(event.currentTarget);
+		var urlDeleta = botao.attr('href');
+		
+		var response = $.ajax({
+			url : urlDeleta,
+			type : 'DELETE'
+		});
+		
+		response.done(function(e){
+			botao.parent().parent().remove();
+		});
+		
+		response.fail(function(e){
+			alert('Erro ao deletar professor!');
+		});
+	});
+	
+	$("#btn-entrar").click(function(event){
+		var usuario = $("#usuario").val();
+		var tipo = $("#tipo").val();
+		$("#usuario").val(usuario+":"+tipo);
+	});
+	
+	
+	
+});

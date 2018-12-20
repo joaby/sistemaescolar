@@ -69,10 +69,28 @@
 	    <tr class="w3-teal">
 	   	  <th>Id</th> 	
 	      <th>Nome</th>
+	      <th>Professor</th>
+	      <th>Adicionar Professor</th>
 	    </tr>
 	    <tr th:each="disciplina : ${disciplinas}">
 	      <td th:text="${disciplina.id}"></td>
-	      <td th:text="${disciplina.nome}"></td>  
+	      <td th:text="${disciplina.nome}"></td> 
+	      <td>
+	      	<table class="w3-border">
+	      	  <tr th:each="professor : ${disciplina.professores}">
+	      	    <td th:text="${professor.cpf}"></td>
+	      	    <td th:text="${professor.nome}"></td>
+	      	    <td>
+	      	      <a class="btn-deleta-prof" th:href="@{/disciplina/{idDisciplina}/professor/{cpf}(idDisciplina=${disciplina.id}, cpf=${professor.cpf})}">
+	      	      	<i class="material-icons">delete</i>
+	      	      </a>
+	      	    </td>
+	      	  </tr>
+	      	</table>
+	      </td>
+	      <td>
+	        <a th:href="@{/disciplina/{idDisciplina}/professor/novo(idDisciplina=${disciplina.id})}"><i class="material-icons w3-blue">add</i></a>  
+	      </td> 
 	    </tr>
 	  </table> 
   </div>
@@ -89,8 +107,9 @@
 	    document.getElementById(opcaoName).style.display = "block";  
 	}
   </script>
-  
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/escola.js"></script>
+  
 
 </body>
 </html>

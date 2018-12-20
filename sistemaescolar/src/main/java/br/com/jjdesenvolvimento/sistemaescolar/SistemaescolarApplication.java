@@ -9,7 +9,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
 @SpringBootApplication
-public class SistemaescolarApplication {
+public class SistemaescolarApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaescolarApplication.class, args);
@@ -19,4 +19,5 @@ public class SistemaescolarApplication {
 	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
 	}
+	
 }

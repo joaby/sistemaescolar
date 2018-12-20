@@ -70,5 +70,10 @@ public class Disciplina {
 		this.professores = professores;
 	}
 	
-
+	public boolean isExisteProfessor() {
+		if(this.professores.size() == 0) {
+			return false;
+		}
+		return true;
+	}
 }

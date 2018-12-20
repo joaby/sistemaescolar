@@ -22,6 +22,7 @@ public class Nota {
 	@JoinColumn(name="disciplina_id")
 	private Disciplina disciplina;
 	
+	
 	public Nota(){
 		this.aluno = new Aluno();
 		this.disciplina = new Disciplina();
@@ -60,5 +61,5 @@ public class Nota {
 		this.disciplina = disciplina;
 	}
 	
-
+	
 }

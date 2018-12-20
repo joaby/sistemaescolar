@@ -28,28 +28,14 @@ public class LonginController {
 	@Autowired
 	private ProfessorService professorService;
 	
-	@RequestMapping("/inicio")
+	@RequestMapping("/entrar")
 	public String inicio() {
 		return "Login";
 	}
 	
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String home(){
 		return "Home";
-	}
-	
-	@RequestMapping(value="/logar", method=RequestMethod.POST)
-	public String logar(Long usuario, String senha, TipoUsuario tipo) {
-		if(tipo.equals(TipoUsuario.ALUNO)) {
-			Aluno a = alunoService.buscarPorId(usuario);
-			if(a!=null && senha.equals(a.getSenha())) {
-				return "redirect:aluno/novo";
-			}else {
-				return "Login";
-			}
-			
-		}
-		return "Login";
 	}
 	
 	@ModelAttribute("todosTipoUsuario")
