@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+import br.com.jjdesenvolvimento.sistemaescolar.model.TipoUsuario;
+
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -21,8 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()//permite restringir acesso
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/css/**").permitAll()
-				.antMatchers("/escola").hasAnyRole("ADMIN")
-				.antMatchers("/aluno").hasRole("SECRETARIO")
+				.antMatchers("/escola").hasAnyRole(TipoUsuario.ADMINISTRADOR.name())
+				.antMatchers("/aluno").hasRole(TipoUsuario.SECRETARIO.name())
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

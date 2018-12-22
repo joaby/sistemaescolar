@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="UTF-8">
 <body>
   
@@ -9,7 +10,8 @@
 	  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
 	    <i class="fa fa-remove"></i>
 	  </a>
-	  <h4 class="w3-bar-item w3-text-red"><b>Área do Secretário</b></h4>
+	  <h4 sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-text-teal"><b>Área do Secretário</b></h4>
+	  <h4 sec:authorize="hasRole('ROLE_PROFESSOR')" class="w3-bar-item w3-text-teal"><b>Área do Professor</b></h4>
 	  	 <h5 class="w3-bar-item w3-theme-l2">ESCOLA</h5>
 	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/escola/nova}">Nova</a>
 	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/escola}">Listar</a>
@@ -19,8 +21,12 @@
 	     <h5 class="w3-bar-item w3-theme-l2">PROFESSOR</h5>
 	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/professor/novo}">Novo</a>
 	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/professor}">Listar</a>
+	     <h5 class="w3-bar-item w3-theme-l2">SECRETÁRIO</h5>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/secretario/novo}">Novo</a>
+	     <a class="w3-bar-item w3-button w3-hover-teal" th:href="@{/secretario}">Listar</a>
 
 	</nav>
+	
 
 	<!-- Overlay effect when opening sidebar on small screens -->
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>

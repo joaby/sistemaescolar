@@ -6,4 +6,5 @@ import br.com.jjdesenvolvimento.sistemaescolar.model.Secretario;
 
 public interface SecretarioRepository extends JpaRepository<Secretario, Long>{
 
+	public Secretario findByLogin(String login);
 }

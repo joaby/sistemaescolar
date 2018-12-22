@@ -18,9 +18,12 @@ public class Escola {
 	
 	@OneToMany(mappedBy="escola")
 	private List<Turma> turmas;
+	@OneToMany(mappedBy="escola")
+	private List<Secretario> secretarios;
 	
 	public Escola(){
 		this.turmas = new ArrayList<Turma>();
+		this.secretarios = new ArrayList<Secretario>();
 	}
 
 	public Long getId() {
@@ -46,10 +49,13 @@ public class Escola {
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
-	
-	@Override
-	public String toString() {
-		return this.getId() + " : " + this.getNome();
+
+	public List<Secretario> getSecretarios() {
+		return secretarios;
+	}
+
+	public void setSecretarios(List<Secretario> secretarios) {
+		this.secretarios = secretarios;
 	}
 	
 }

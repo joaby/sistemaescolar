@@ -2,6 +2,8 @@ package br.com.jjdesenvolvimento.sistemaescolar.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Secretario {
@@ -9,8 +11,19 @@ public class Secretario {
 	@Id
 	private Long cpf;
 	private String nome;
+	private String login;
 	private String senha;
 	
+	@ManyToOne
+	@JoinColumn(name="escola_id")
+	private Escola escola;
+	
+	public Escola getEscola() {
+		return escola;
+	}
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
 	public Long getCpf() {
 		return cpf;
 	}
@@ -52,6 +65,12 @@ public class Secretario {
 		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
 	}	
 
 }
