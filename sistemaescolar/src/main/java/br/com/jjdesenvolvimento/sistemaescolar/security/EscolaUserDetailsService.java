@@ -11,9 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import br.com.jjdesenvolvimento.sistemaescolar.model.Administrador;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Professor;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Secretario;
 import br.com.jjdesenvolvimento.sistemaescolar.model.TipoUsuario;
+import br.com.jjdesenvolvimento.sistemaescolar.service.AdministradorService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.ProfessorService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.SecretarioService;
@@ -27,6 +29,8 @@ public class EscolaUserDetailsService implements UserDetailsService{
 	AlunoService alunoService;
 	@Autowired
 	SecretarioService secretarioService;
+	@Autowired
+	AdministradorService administradorService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -45,6 +49,13 @@ public class EscolaUserDetailsService implements UserDetailsService{
 				throw new UsernameNotFoundException("Secretario não encontrado!");
 			}else {
 				return new UsuarioSistema(secretario.getNome(), TipoUsuario.SECRETARIO, secretario.getLogin(), secretario.getSenha(), authorities(TipoUsuario.SECRETARIO));
+			}
+		}else if(arr[1].equals(TipoUsuario.ADMINISTRADOR.name())){
+			Administrador administrador = administradorService.buscarPorLogin(arr[0]);
+			if(administrador.getLogin() == null) {
+				throw new UsernameNotFoundException("Administrador não encontrado!");
+			}else {
+				return new UsuarioSistema(administrador.getNome(), TipoUsuario.ADMINISTRADOR, administrador.getLogin(), administrador.getSenha(), authorities(TipoUsuario.ADMINISTRADOR));
 			}
 		}else {
 			throw new UsernameNotFoundException("Professor não encontrado!");

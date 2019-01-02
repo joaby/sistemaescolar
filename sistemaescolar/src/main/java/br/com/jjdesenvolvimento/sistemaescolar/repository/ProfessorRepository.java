@@ -6,5 +6,6 @@ import br.com.jjdesenvolvimento.sistemaescolar.model.Professor;
 public interface ProfessorRepository extends JpaRepository<Professor, Long>{
 	
 	public Professor findByLogin(String login);
+	public Professor findByCpf(String cpf);
 
 }

@@ -16,35 +16,38 @@
 <body>
 
 	<header th:insert="~{Cabecalho :: cabecalho}"></header>
-
 	<div th:insert="~{Menu :: menu}"></div>
 
-	<div class="w3-main w3-container w3-theme-l5 w3-border w3-round-xlarge" style="margin-left:263px; margin-top:80px; margin-right:6px;">
+	<div class="w3-main w3-container" style="margin-left:263px; margin-top:80px; margin-right:6px;">
 
-		<div class="w3-display-container w3-panel w3-border w3-leftbar">
-			<h2>Cadastro de Aluno</h2>
-			<a class="w3-display-right w3-margin-right w3-teal w3-button"
-				href="/aluno">Listar alunos</a>
-		</div>
+	<h2 class="w3-center w3-text-teal">Cadastro de Aluno</h2>
 
-		<form action="/aluno" method="post" th:object="${aluno}">
-			<p>
+		<form th:action="@{/aluno}" method="post" th:object="${aluno}">
+			<div class="w3-row">
+			  <div class="w3-half">
 				<label>Matrícula:</label> 
 				<input class="w3-input w3-border" type="text" th:field="*{matricula}">
-			</p>
+			  </div>
+			  <div class="w3-half">
+			   <div class="w3-margin-left">
+				<label>CPF:</label>
+				<input class="w3-input w3-border" type="text" th:field="*{cpf}">
+				</div>
+			  </div>	
+			</div>
 			<p>
 				<label>Nome:</label> 
 				<input class="w3-input w3-border" type="text" th:field="*{nome}">
 			</p>
 
 			<div class="w3-row">
-				<div class="w3-container w3-half">
+				<div class="w3-half">
 					<label>Sexo: </label> 
 					<input class="w3-radio" type="radio" th:field="*{sexo}" th:value="M" th:text="Masculino"> 
 					<input class="w3-radio" type="radio" th:field="*{sexo}" th:value="F" th:text="Feminina">
 				</div>
 
-				<div class="w3-container w3-half">
+				<div class="w3-half">
 					<label>Data de Nascimento:</label> <input type="text" class="w3-input w3-border"
 						th:field="*{dataNascimento}">
 				</div>
@@ -65,10 +68,7 @@
 					th:field="*{rg}">
 			</p>
 
-			<p>
-				<label>Cadastro de Pessoa Física (CPF):</label> <input
-					class="w3-input w3-border" type="text" th:field="*{cpf}">
-			</p>
+			
 
 			<p>
 				<label>Endereço:</label> <input class="w3-input w3-border" type="text"
@@ -85,12 +85,12 @@
 					th:field="*{email}">
 			</p>
 			<div class="w3-row">
-			   <div class="w3-container w3-half">
+			   <div class="w3-half">
 			     <label>Portador de Necessidades Especiais:</label> 
 			     <input class="w3-radio" type="radio" th:field="*{especial}" th:value="true" th:text="Sim"> 
 			     <input class="w3-radio" type="radio" th:field="*{especial}" th:value="false" th:text="Não">
 			   </div>
-			   <div class="w3-container w3-half">
+			   <div class="w3-half">
 				 <label>Ano de Ingresso:</label> 
 				 <input class="w3-input w3-border" type="text" th:field="*{anoIngresso}">
 			   </div>

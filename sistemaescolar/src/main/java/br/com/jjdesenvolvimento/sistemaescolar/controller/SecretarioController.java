@@ -32,6 +32,8 @@ public class SecretarioController {
 	public String salvar(Secretario secretario, Long idEscola) {
 		Escola escola = this.escolaService.buscarPorId(idEscola);
 		secretario.setEscola(escola);
+		secretario.setLogin(secretario.getCpf());
+		secretario.setSenha(secretario.getCpf());
 		this.secretarioService.salvar(secretario);
 		return "redirect:secretario/novo";
 	}
@@ -49,7 +51,7 @@ public class SecretarioController {
 	}
 	
 	@ModelAttribute("todasEscolas")
-	public List<Escola> buscarNomesEscolas(){
+	public List<Escola> buscarEscolas(){
 		return this.escolaService.buscarTodas();
 	}
 }

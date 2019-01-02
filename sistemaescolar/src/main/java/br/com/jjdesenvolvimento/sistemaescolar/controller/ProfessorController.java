@@ -30,6 +30,8 @@ public class ProfessorController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(Professor professor) {
+		professor.setLogin(professor.getCpf());
+		professor.setSenha(professor.getCpf());
 		professorService.salvar(professor);
 		return "redirect:professor/novo";
 	}
@@ -51,5 +53,4 @@ public class ProfessorController {
 	public Professor professorVazio() {
 		return new Professor();
 	}
-
 }

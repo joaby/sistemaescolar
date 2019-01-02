@@ -20,11 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override // configura as solicitações por http
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()//permite restringir acesso
+		    .csrf().disable()
+			.authorizeRequests()
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/css/**").permitAll()
-				.antMatchers("/escola").hasAnyRole(TipoUsuario.ADMINISTRADOR.name())
-				.antMatchers("/aluno").hasRole(TipoUsuario.SECRETARIO.name())
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

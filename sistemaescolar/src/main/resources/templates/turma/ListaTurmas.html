@@ -22,7 +22,6 @@
   
   <div class="w3-container w3-center">
 	<h2 class="w3-text-teal">Turmas</h2>
-	<p th:text="${infoEscola}"></p>
   </div>
   <form th:action="@{/escola/{idEscola}/turmas/ano(idEscola=${idEscola})}" method="get">
     <input type="text" name="ano" placeholder="Pesquisar por ano"/>

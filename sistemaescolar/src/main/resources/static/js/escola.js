@@ -66,12 +66,25 @@ $(document).ready(function(){
 		});
 	});
 	
+	//concatena usuario e tipo no login
 	$("#btn-entrar").click(function(event){
 		var usuario = $("#usuario").val();
 		var tipo = $("#tipo").val();
 		$("#usuario").val(usuario+":"+tipo);
 	});
 	
-	
+	//excluir escola
+	$('.btn-excluir-escola').click(function(event){
+		var botao = $(this);
+		var nome = botao.data('nome');
+		var id = botao.data('id');
+		console.log(id +":"+ nome);
+		var modal = $('#modal-exclusao');
+		modal.show();
+		var form = modal.find('form');
+		form.attr('action', '/escola'+"/"+id);
+		modal.find('p span').text(nome);
+		
+	});
 	
 });

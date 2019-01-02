@@ -35,6 +35,19 @@ public class EscolaController {
 		return "redirect:escola/nova";
 	}
 	
+	@RequestMapping("{id}")
+	public ModelAndView aditar(@PathVariable("id") Escola escola) {
+		ModelAndView mv = new ModelAndView("escola/CadastroEscola");
+		mv.addObject("escola", escola);
+		return mv;
+	}
+	
+	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	public String excluir(@PathVariable Long id) {
+		this.escolaService.excluirPorId(id);
+		return "redirect:/escola";
+	}
+	
 	@RequestMapping
 	public ModelAndView buscarTodas(){
 		List<Escola> escolas = escolaService.buscarTodas();

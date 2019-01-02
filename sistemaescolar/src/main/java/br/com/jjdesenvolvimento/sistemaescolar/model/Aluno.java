@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -19,7 +21,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Aluno {
 	
 	@Id
-	private Long matricula;
+	@GeneratedValue
+	private Long id;
+    @Column(unique=true)
+	private String matricula;
+    @Column(unique=true)
+    private String login;
 	private String senha;
 	private String nome;
 	@Temporal(TemporalType.DATE)
@@ -43,19 +50,26 @@ public class Aluno {
 	private List<Turma> turmas;
 	@OneToMany(mappedBy="aluno")
 	private List<Nota> notas;
-	
+	@ManyToMany
+	private List<Aula> aulas;
+
 	public Aluno(){
 		this.turmas = new ArrayList<Turma>();	
 		this.notas = new ArrayList<Nota>();
+		this.aulas = new ArrayList<Aula>();
 	}
 	
-	
-	public Long getMatricula() {
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(Long matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
-		this.senha = Long.toString(matricula);
 	}
 	public String getNome() {
 		return nome;
@@ -93,125 +107,79 @@ public class Aluno {
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
-	
 	public String getNomeMae() {
 		return nomeMae;
 	}
-
 	public void setNomeMae(String nomeMae) {
 		this.nomeMae = nomeMae;
 	}
-
 	public String getNomePai() {
 		return nomePai;
 	}
-
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
 	}
-
-
 	public String getEndereco() {
 		return endereco;
 	}
-
-
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
-
 	public String getTelefone() {
 		return telefone;
 	}
-
-
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-
 	public String getRg() {
 		return rg;
 	}
-
-
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-
-
 	public String getCpf() {
 		return cpf;
 	}
-
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 	public boolean isEspecial() {
 		return especial;
 	}
-
-
 	public void setEspecial(boolean especial) {
 		this.especial = especial;
 	}
-
 	public String getSenha() {
 		return senha;
 	}
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 	public List<Nota> getNotas() {
 		return notas;
 	}
-
-
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
 
+	public String getLogin() {
+		return login;
+	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
-		return result;
+	public void setLogin(String login) {
+		this.login = login;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aluno other = (Aluno) obj;
-		if (matricula == null) {
-			if (other.matricula != null)
-				return false;
-		} else if (!matricula.equals(other.matricula))
-			return false;
-		return true;
+	public List<Aula> getAulas() {
+		return aulas;
 	}
-	
-	
-	
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
+	}
 }

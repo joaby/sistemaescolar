@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de Disciplina</title>
+<title>Cadastro de Turma</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -22,12 +22,11 @@
 	
 	<div class="w3-container w3-center">
 	  <h2 class="w3-text-teal">Cadastro de Turma</h2>
-	  <p th:text="${infoEscola}"></p>
 	</div>
 	
 	<form th:action="@{/turma/{idEscola}(idEscola=${idEscola})}" method="post" th:object="${turma}">
 	  <p class="w3-container">
-	    <label>Nome</label>
+	    <label>Nome da turma</label>
 	    <input class="w3-input w3-border" type="text" th:field="*{nome}">
 	  </p>
 	  <div class="w3-row-padding">
@@ -46,22 +45,6 @@
 	    <button type="submit" class="w3-button w3-section w3-green w3-ripple w3-padding">Salvar</button>	  
 	  </p>
 	</form>
-	<div class="w3-responsive">
-	<table class="w3-container w3-table-all">
-    <tr class="w3-teal">
-   	  <th>Id</th> 	
-      <th>Nome</th>
-      <th>Ano</th>
-      <th>Turno</th>
-    </tr>
-    <tr th:each="turma : ${turmas}">
-      <td th:text="${turma.id}"></td>
-      <td th:text="${turma.nome}"></td>  
-      <td th:text="${turma.ano}"></td> 
-      <td th:text="${turma.turno.descricao}"></td> 
-    </tr> 
-    </table>
-	</div>
 	</div>
 	<script type="text/javascript" src="/js/escola.js"></script>
 </body>

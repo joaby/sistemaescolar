@@ -22,16 +22,16 @@ public class ProfessorService{
 		return professorRepository.findAll();
 	}
 	
-	public Professor buscarPorCpf(Long cpf) {
-		return professorRepository.findById(cpf).get();
+	public Professor buscarPorCpf(String cpf) {
+		return professorRepository.findByCpf(cpf);
 	}
 	
 	public Professor buscarPorLogin(String login) {
 		return professorRepository.findByLogin(login);
 	}
 	
-	public void excluir(Long cpf) {
-		professorRepository.deleteById(cpf);
+	public void excluir(Long id) {
+		professorRepository.deleteById(id);
 	}
 
 }

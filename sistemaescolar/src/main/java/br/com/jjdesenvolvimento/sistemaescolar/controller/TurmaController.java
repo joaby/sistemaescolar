@@ -1,5 +1,7 @@
 package br.com.jjdesenvolvimento.sistemaescolar.controller;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,22 +39,25 @@ public class TurmaController {
 	@RequestMapping("/nova/{idEscola}")
 	public ModelAndView novo(@PathVariable Long idEscola) {
 		ModelAndView mv = new ModelAndView("turma/CadastroTurma");
-		Escola escola = escolaService.buscarPorId(idEscola);
 		mv.addObject("idEscola", idEscola);
-		mv.addObject("infoEscola", escola.toString());
-		mv.addObject("turmas", escola.getTurmas());
 		return mv;
 	}
 	
 	@RequestMapping(value="{idEscola}", method=RequestMethod.POST)
-	public ModelAndView salvar(@PathVariable Long idEscola, Turma turma) {
+	public String salvar(@PathVariable Long idEscola, Turma turma) {
 		Escola escola = escolaService.buscarPorId(idEscola);
 		turma.setEscola(escola);
 		turmaService.salvar(turma);
-		ModelAndView mv = new ModelAndView("turma/CadastroTurma");
-		mv.addObject("idEscola", idEscola);
-		mv.addObject("turmas", escola.getTurmas());
-		mv.addObject("infoEscola", escola.toString());
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/{idEscola}/ano/turno")
+	public ModelAndView buscarTurmasPorAnoTurno(@PathVariable Long idEscola, int ano, TurnoTurma turno) {
+		Escola escola = escolaService.buscarPorId(idEscola);
+		ModelAndView mv = new ModelAndView("secretario/HomeSecretario");
+		List<Turma> turmasFiltradas = turmaService.filtrarTurmaPorAnoTurno(escola.getTurmas(), ano, turno);
+		mv.addObject("escola", escola);
+		mv.addObject("turmas", turmasFiltradas);
 		return mv;
 	}
 	
@@ -60,28 +65,27 @@ public class TurmaController {
 	public ModelAndView gereciarTurma(@PathVariable Long idTurma) {
 		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
 		Turma turma = turmaService.buscarPorId(idTurma);
-		mv.addObject("infoEscola", turma.getEscola().toString());
-		mv.addObject("infoTurma", turma.getNome());
-		mv.addObject("idTurma", turma.getId());
-		mv.addObject("alunos", turma.getAlunos());
-		mv.addObject("disciplinas", turma.getDisciplinas());
+		mv.addObject("turma", turma);
 		return mv;
 	}
 	
 	@RequestMapping(value="{idTurma}/aluno", method=RequestMethod.POST)
-	public ModelAndView salvarAlunoTurma(@PathVariable Long idTurma, Aluno aluno) {
+	public ModelAndView salvarAlunoTurma(@PathVariable Long idTurma, String matriculaAluno) {
 		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
 		Turma turma = turmaService.buscarPorId(idTurma);
-		Aluno a = alunoService.buscarPorId(aluno.getMatricula());
+		Aluno a = new Aluno();
+		try {
+			a = alunoService.buscarPorMatricula(matriculaAluno);
+		} catch (Exception e) {
+			System.out.println("Aluno não existe");
+			mv.addObject("turma", turma);
+			return mv;
+		}
 		turma.getAlunos().add(a);
 		a.getTurmas().add(turma);
 		turmaService.salvar(turma);
 		alunoService.salvar(a);
-		mv.addObject("infoEscola", turma.getEscola().toString());
-		mv.addObject("infoTurma", turma.getNome());
-		mv.addObject("idTurma", turma.getId());
-		mv.addObject("alunos", turma.getAlunos());
-		mv.addObject("disciplinas", turma.getDisciplinas());
+		mv.addObject("turma", turma);
 		return mv;
 	}
 	
@@ -94,11 +98,7 @@ public class TurmaController {
 		aluno.getTurmas().remove(turma);
 		turmaService.salvar(turma);
 		alunoService.salvar(aluno);
-		mv.addObject("infoEscola", turma.getEscola().toString());
-		mv.addObject("infoTurma", turma.getNome());
-		mv.addObject("idTurma", turma.getId());
-		mv.addObject("alunos", turma.getAlunos());
-		mv.addObject("disciplinas", turma.getDisciplinas());
+		mv.addObject("turma", turma);
 		return mv;
 	}
 	
@@ -108,11 +108,7 @@ public class TurmaController {
 		Turma turma = turmaService.buscarPorId(idTurma);
 		disciplina.setTurma(turma);
 		disciplinaService.salvar(disciplina);
-		mv.addObject("infoEscola", turma.getEscola().toString());
-		mv.addObject("infoTurma", turma.getNome());
-		mv.addObject("idTurma", turma.getId());
-		mv.addObject("alunos", turma.getAlunos());
-		mv.addObject("disciplinas", turma.getDisciplinas());
+		mv.addObject("turma", turma);
 		return mv;
 	}
 	

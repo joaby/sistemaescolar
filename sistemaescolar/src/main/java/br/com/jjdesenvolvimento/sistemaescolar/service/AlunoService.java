@@ -22,13 +22,17 @@ public class AlunoService {
 		return alunoRepository.findAll();
 	}
 	
-	public Aluno buscarPorId(Long matricula) {
-		return alunoRepository.findById(matricula).get();	
-		
+	public Aluno buscarPorId(Long id){
+		Aluno a = alunoRepository.findById(id).get();
+		return a;
 	}
 	
-	public void excluir(Long matricula){
-		alunoRepository.deleteById(matricula);
+	public Aluno buscarPorMatricula(String matricula){
+		return alunoRepository.findByMatricula(matricula);
+	}
+	
+	public void excluir(Long id){
+		alunoRepository.deleteById(id);
 	}
 	
 }

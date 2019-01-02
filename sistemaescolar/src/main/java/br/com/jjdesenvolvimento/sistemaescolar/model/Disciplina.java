@@ -26,11 +26,14 @@ public class Disciplina {
 	@ManyToOne
 	@JoinColumn(name="turma_id")
 	private Turma turma;
+	@OneToMany(mappedBy="disciplina")
+	private List<Aula> aulas;
 	
 	public Disciplina(){
 		this.professores = new ArrayList<Professor>();
 		this.notas = new ArrayList<Nota>();
 		this.turma = new Turma();
+		this.aulas = new ArrayList<Aula>();
 	}
 	
 	public Long getId() {
@@ -75,5 +78,13 @@ public class Disciplina {
 			return false;
 		}
 		return true;
+	}
+
+	public List<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 }

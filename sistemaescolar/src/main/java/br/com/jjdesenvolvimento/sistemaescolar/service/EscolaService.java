@@ -26,4 +26,8 @@ public class EscolaService {
 		return escolaRepository.findById(id).get();
 	}
 	
+	public void excluirPorId(Long id) {
+		this.escolaRepository.deleteById(id);
+	}
+	
 }

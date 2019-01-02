@@ -22,13 +22,15 @@ public class AlunoController {
 	private AlunoService alunoService;
 	
 	@RequestMapping("/novo")
-	public ModelAndView novo() {
+	public ModelAndView novo(@ModelAttribute("aluno") Aluno aluno) {
 		ModelAndView mv = new ModelAndView("aluno/CadastroAluno");
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(Aluno aluno) {
+		aluno.setLogin(aluno.getMatricula());
+		aluno.setSenha(aluno.getMatricula());
 		alunoService.salvar(aluno);
 		return "redirect:aluno/novo";
 	}
@@ -39,11 +41,6 @@ public class AlunoController {
 		ModelAndView mv = new ModelAndView("aluno/ListaAlunos");
 		mv.addObject("alunos", alunos);
 		return mv;
-	}
-	
-	@ModelAttribute("aluno")
-	public Aluno alunoVazio() {
-		return new Aluno();
 	}
 	
 	@ModelAttribute("todosStatusAluno")
