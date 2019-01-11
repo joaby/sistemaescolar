@@ -28,6 +28,10 @@ public class SecretarioService {
 		return this.secretarioRepository.findByLogin(login);
 	}
 	
+	public void excluir(Long id) {
+		this.secretarioRepository.deleteById(id);
+	}
+	
 	public List<Secretario> buscarTodos(){
 		return this.secretarioRepository.findAll();
 	}

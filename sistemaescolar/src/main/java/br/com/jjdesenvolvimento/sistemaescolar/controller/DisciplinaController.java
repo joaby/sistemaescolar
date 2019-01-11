@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.jjdesenvolvimento.sistemaescolar.model.Aluno;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Aula;
+import br.com.jjdesenvolvimento.sistemaescolar.model.Chamada;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Disciplina;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
+import br.com.jjdesenvolvimento.sistemaescolar.model.PresencaAluno;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Professor;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Turma;
 import br.com.jjdesenvolvimento.sistemaescolar.security.UsuarioSistema;
+import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AulaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.DisciplinaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
@@ -40,6 +44,8 @@ public class DisciplinaController {
 	private EscolaService escolaService;
 	@Autowired
 	private AulaService aulaService;
+	@Autowired
+	private AlunoService alunoService;
 	
 	@RequestMapping("/nova/{idTurma}")
 	public ModelAndView nova(@PathVariable Long idTurma) {
@@ -86,6 +92,43 @@ public class DisciplinaController {
 		aula.setDisciplina(disciplina);
 		aulaService.salvar(aula);
 		mv.addObject("idDisciplina", idDisciplina);
+		return mv;
+	}
+	@RequestMapping(value="{idDisciplina}/frequencia/nova")
+	public ModelAndView novaFrequencia(@PathVariable Long idDisciplina) {
+		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
+		Disciplina disciplina = disciplinaService.buscarPorId(idDisciplina);
+		mv.addObject("aulas", disciplina.getAulas());
+		mv.addObject("chamada", new Chamada());
+		return mv;
+	}
+	
+	@RequestMapping("/aula/frequencia")
+	public ModelAndView buscarAlunosFrequencia(Long idAula) {
+		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
+		Aula aula = aulaService.buscarPorId(idAula);
+		Chamada chamada = new Chamada();
+		chamada.setPresencaAlunos(disciplinaService.mudarParaPresencaAluno(aula.getDisciplina().getTurma().getAlunos()));
+		mv.addObject("aulas", aula.getDisciplina().getAulas());
+		mv.addObject("chamada", chamada);
+		mv.addObject("idAula", idAula);
+		return mv;
+	}
+	//falta terminar
+	@RequestMapping(value="/aula/{idAula}/frequencia", method=RequestMethod.POST)
+	public ModelAndView salvarFrequencia(@PathVariable Long idAula, Chamada chamada) {
+		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
+		Aula aula = aulaService.buscarPorId(idAula);
+		for (PresencaAluno pa : chamada.getPresencaAlunos()) {
+			if(pa.getPresente()) {
+				Aluno aluno = alunoService.buscarPorId(pa.getAluno().getId());
+				aula.getAlunos().add(aluno);
+			}
+		}
+		aulaService.salvar(aula);
+		mv.addObject("aulas", aula.getDisciplina().getAulas());
+		mv.addObject("chamada", chamada);
+		mv.addObject("idAula", idAula);
 		return mv;
 	}
 	

@@ -15,4 +15,8 @@ public class AulaService {
 	public void salvar(Aula aula) {
 		aulaRepository.save(aula);
 	}
+	
+	public Aula buscarPorId(Long id) {
+		return aulaRepository.findById(id).get();
+    }
 }

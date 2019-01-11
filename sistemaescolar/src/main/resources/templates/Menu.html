@@ -12,9 +12,9 @@
 	  </a>
 	    
 	     <a sec:authorize="hasRole('ROLE_PROFESSOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO PROFESSOR</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-text-teal" th:href="@{/}">Área do administrador</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO ADMINISTRADOR</a>
 	  	 <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO SECRETÁRIO</a>
-	  	 <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-theme-l1">ESCOLA</a>
+	  	 <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-gray"><i class="material-icons">local_library</i> ESCOLA</a>
 	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola/nova}">Nova</a>
 	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola}">Listar</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> ALUNO</a>
@@ -23,7 +23,7 @@
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> PROFESSOR</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor/novo}">Cadastrar professor</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor}">Listar professores</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-theme-l2">SECRETÁRIO</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> SECRETÁRIO</a>
 	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario/novo}">Novo</a>
 	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario}">Listar</a>
 

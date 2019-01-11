@@ -48,8 +48,8 @@
 					<th>Disciplina</th>
 					<th>Turma</th>
 					<th>Turno</th>
-					<th>Cadastrar aula</th>
-					<th>Gerenciar</th>
+					<th>Adicionar aula</th>
+					<th>Fazer Frequência</th>
 				</tr>
 				<tr th:each="disciplina : ${disciplinas}">
 					<td th:text="${disciplina.id}"></td>
@@ -57,7 +57,7 @@
 					<td th:text="${disciplina.turma.nome}"></td>
 					<td th:text="${disciplina.turma.turno.descricao}"></td>
 					<td><a class="w3-button w3-circle w3-teal" th:href="@{/disciplina/{idDisciplina}/aula/nova(idDisciplina=${disciplina.id})}">+</a></td>
-					<td><i class="material-icons">settings</i></td>
+					<td><a class="w3-button w3-circle w3-teal" th:href="@{/disciplina/{idDisciplina}/frequencia/nova(idDisciplina=${disciplina.id})}">+</a></td>
 				</tr>
 			</table>
 		</div>
