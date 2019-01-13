@@ -50,13 +50,10 @@ public class Aluno {
 	private List<Turma> turmas;
 	@OneToMany(mappedBy="aluno")
 	private List<Nota> notas;
-	@ManyToMany
-	private List<Aula> aulas;
 
 	public Aluno(){
 		this.turmas = new ArrayList<Turma>();	
 		this.notas = new ArrayList<Nota>();
-		this.aulas = new ArrayList<Aula>();
 	}
 	
 	public Long getId() {
@@ -174,12 +171,5 @@ public class Aluno {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-	public List<Aula> getAulas() {
-		return aulas;
-	}
-
-	public void setAulas(List<Aula> aulas) {
-		this.aulas = aulas;
 	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,15 +27,15 @@ public class Aula {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	
-	@ManyToMany(mappedBy="aulas")
-	private List<Aluno> alunos;
 	@ManyToOne
 	@JoinColumn(name="disciplina_id")
 	private Disciplina disciplina;
+	@OneToMany(mappedBy="aula")
+	private List<PresencaAluno> presencaAlunos;
 
 	public Aula() {
-		this.alunos = new ArrayList<Aluno>();
 		this.disciplina = new Disciplina();
+		this.presencaAlunos = new ArrayList<PresencaAluno>();
 	}
 	
 	public Long getId() {
@@ -61,20 +62,20 @@ public class Aula {
 		this.data = data;
 	}
 
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
-
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
+	}
+
+	public List<PresencaAluno> getPresencaAlunos() {
+		return presencaAlunos;
+	}
+
+	public void setPresencaAlunos(List<PresencaAluno> presencaAlunos) {
+		this.presencaAlunos = presencaAlunos;
 	}
 	
 	

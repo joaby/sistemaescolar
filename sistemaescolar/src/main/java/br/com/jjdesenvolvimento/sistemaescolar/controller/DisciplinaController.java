@@ -27,6 +27,7 @@ import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AulaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.DisciplinaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
+import br.com.jjdesenvolvimento.sistemaescolar.service.PresencaAlunoService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.ProfessorService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.TurmaService;
 
@@ -46,6 +47,8 @@ public class DisciplinaController {
 	private AulaService aulaService;
 	@Autowired
 	private AlunoService alunoService;
+	@Autowired
+	private PresencaAlunoService presencaAlunoService;
 	
 	@RequestMapping("/nova/{idTurma}")
 	public ModelAndView nova(@PathVariable Long idTurma) {
@@ -104,11 +107,15 @@ public class DisciplinaController {
 	}
 	
 	@RequestMapping("/aula/frequencia")
-	public ModelAndView buscarAlunosFrequencia(Long idAula) {
+	public ModelAndView selecionarAulaParaFrequencia(Long idAula) {
 		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
 		Aula aula = aulaService.buscarPorId(idAula);
 		Chamada chamada = new Chamada();
-		chamada.setPresencaAlunos(disciplinaService.mudarParaPresencaAluno(aula.getDisciplina().getTurma().getAlunos()));
+		if(aula.getPresencaAlunos().isEmpty()) {
+			chamada.setPresencaAlunos(disciplinaService.mudarParaPresencaAluno(aula.getDisciplina().getTurma().getAlunos()));
+		}else {
+			chamada.setPresencaAlunos(aula.getPresencaAlunos());
+		}	
 		mv.addObject("aulas", aula.getDisciplina().getAulas());
 		mv.addObject("chamada", chamada);
 		mv.addObject("idAula", idAula);
@@ -120,12 +127,9 @@ public class DisciplinaController {
 		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
 		Aula aula = aulaService.buscarPorId(idAula);
 		for (PresencaAluno pa : chamada.getPresencaAlunos()) {
-			if(pa.getPresente()) {
-				Aluno aluno = alunoService.buscarPorId(pa.getAluno().getId());
-				aula.getAlunos().add(aluno);
-			}
+			pa.setAula(aula);
+			presencaAlunoService.salvar(pa);
 		}
-		aulaService.salvar(aula);
 		mv.addObject("aulas", aula.getDisciplina().getAulas());
 		mv.addObject("chamada", chamada);
 		mv.addObject("idAula", idAula);
