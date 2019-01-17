@@ -21,6 +21,7 @@ import br.com.jjdesenvolvimento.sistemaescolar.model.TurnoTurma;
 import br.com.jjdesenvolvimento.sistemaescolar.security.UsuarioSistema;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AdministradorService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.AlunoService;
+import br.com.jjdesenvolvimento.sistemaescolar.service.DisciplinaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.ProfessorService;
 import br.com.jjdesenvolvimento.sistemaescolar.service.SecretarioService;
@@ -41,6 +42,8 @@ public class LonginController {
 	private SecretarioService secretarioService;
 	@Autowired
 	private AdministradorService administradorService;
+	@Autowired
+	private DisciplinaService disciplinaService;
 	
 	@RequestMapping("/entrar")
 	public String inicio() {
@@ -63,7 +66,7 @@ public class LonginController {
 			mv.setViewName("professor/HomeProfessor");
 			mv.addObject("nome", professor.getNome());
 			mv.addObject("todasEscolas", escolaService.buscarTodas());
-			//mv.addObject("disciplinas", professor.getDisciplinas());
+			mv.addObject("disciplinas", disciplinaService.buscarDisciplinasPorAno(professor.getDisciplinas(), hoje.get(Calendar.YEAR)));
 			return mv;
 		}else if(usuario.getTipo().equals(TipoUsuario.ADMINISTRADOR)) {
 			Administrador administrador = this.administradorService.buscarPorLogin(usuario.getUsername());

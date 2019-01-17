@@ -12,20 +12,25 @@ public class Nota {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String descricao;
 	private float nota;
 	
 	@ManyToOne
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
 	@ManyToOne
-	@JoinColumn(name="disciplina_id")
-	private Disciplina disciplina;
+	@JoinColumn(name="avaliacao_id")
+	private Avaliacao avaliacao;
 	
 	
 	public Nota(){
 		this.aluno = new Aluno();
-		this.disciplina = new Disciplina();
+		this.avaliacao = new Avaliacao();
+	}
+	
+	public Nota(float nota, Aluno aluno, Avaliacao avaliacao) {
+		this.nota = nota;
+		this.aluno = aluno;
+		this.avaliacao = avaliacao;
 	}
 	
 	public Long getId() {
@@ -33,12 +38,6 @@ public class Nota {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 	public float getNota() {
 		return nota;
@@ -53,13 +52,12 @@ public class Nota {
 		this.aluno = aluno;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
 	}
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
 	}
-	
 	
 }

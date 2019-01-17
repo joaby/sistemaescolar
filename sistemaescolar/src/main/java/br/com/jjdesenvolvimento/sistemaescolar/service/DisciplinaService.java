@@ -35,4 +35,14 @@ public class DisciplinaService {
 		}
 		return presencaAlunos;
 	}
+	
+	public List<Disciplina> buscarDisciplinasPorAno(List<Disciplina> disciplinas, int ano){
+		List<Disciplina> disciplinasAnoLetivo = new ArrayList<Disciplina>();
+		for (Disciplina disciplina : disciplinas) {
+			if(disciplina.getTurma().getAno() == ano) {
+				disciplinasAnoLetivo.add(disciplina);
+			}
+		}
+		return disciplinasAnoLetivo;
+	}
 }

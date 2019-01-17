@@ -121,7 +121,7 @@ public class DisciplinaController {
 		mv.addObject("idAula", idAula);
 		return mv;
 	}
-	//falta terminar
+	
 	@RequestMapping(value="/aula/{idAula}/frequencia", method=RequestMethod.POST)
 	public ModelAndView salvarFrequencia(@PathVariable Long idAula, Chamada chamada) {
 		ModelAndView mv = new ModelAndView("disciplina/CadastroFrequencia");
@@ -148,26 +148,10 @@ public class DisciplinaController {
 	}
 	
 	@RequestMapping("/professor")
-	public ModelAndView buscarDisciplinasProfessor(@AuthenticationPrincipal UsuarioSistema usuario, Long idEscola, int anoLetivo) {
+	public ModelAndView buscarDisciplinasProfessor(@AuthenticationPrincipal UsuarioSistema usuario, int anoLetivo) {
 		ModelAndView mv = new ModelAndView("professor/HomeProfessor");
 		Professor professor = professorService.buscarPorLogin(usuario.getUsername());
-		Escola escola = escolaService.buscarPorId(idEscola);
-		List<Turma> turmas = escola.getTurmas();
-		List<Disciplina> disciplinasProfessor = new ArrayList<Disciplina>();
-		for (Turma turma : turmas) {
-			if(turma.getAno() == anoLetivo) {
-				for (Disciplina disciplina : turma.getDisciplinas()) {
-					for (Professor p : disciplina.getProfessores()) {
-						if(professor.getCpf().equals(p.getCpf())) {
-							disciplinasProfessor.add(disciplina);
-						}
-					}
-				}
-			}
-		}
-		mv.addObject("nome", usuario.getNome());
-		mv.addObject("todasEscolas", escolaService.buscarTodas());
-		mv.addObject("disciplinas", disciplinasProfessor);
+		mv.addObject("disciplinas", disciplinaService.buscarDisciplinasPorAno(professor.getDisciplinas(), anoLetivo));
 		return mv;
 	}
 	

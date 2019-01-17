@@ -22,7 +22,7 @@ public class Disciplina {
 	@ManyToMany
 	private List<Professor> professores;
 	@OneToMany(mappedBy="disciplina")
-	private List<Nota> notas;
+	private List<Avaliacao> avaliacoes;
 	@ManyToOne
 	@JoinColumn(name="turma_id")
 	private Turma turma;
@@ -31,7 +31,7 @@ public class Disciplina {
 	
 	public Disciplina(){
 		this.professores = new ArrayList<Professor>();
-		this.notas = new ArrayList<Nota>();
+		this.avaliacoes = new ArrayList<Avaliacao>();
 		this.turma = new Turma();
 		this.aulas = new ArrayList<Aula>();
 	}
@@ -48,13 +48,13 @@ public class Disciplina {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public List<Nota> getNotas() {
-		return notas;
+    
+	public List<Avaliacao> getAvaliacoes() {
+		return avaliacoes;
 	}
 
-	public void setNotas(List<Nota> notas) {
-		this.notas = notas;
+	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+		this.avaliacoes = avaliacoes;
 	}
 
 	public Turma getTurma() {
