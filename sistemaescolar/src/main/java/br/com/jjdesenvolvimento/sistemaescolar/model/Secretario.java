@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Secretario {
@@ -13,11 +15,19 @@ public class Secretario {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@Column(unique=true)
+	@NotEmpty
+	@Size(max=11, min=11)
 	private String cpf;
+	
+	@NotEmpty
+	@Size(max=50)
 	private String nome;
+	
 	@Column(unique=true)
 	private String login;
+	
 	private String senha;
 	
 	@ManyToOne

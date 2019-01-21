@@ -14,18 +14,18 @@
 	     <a sec:authorize="hasRole('ROLE_PROFESSOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO PROFESSOR</a>
 	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO ADMINISTRADOR</a>
 	  	 <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO SECRETÁRIO</a>
-	  	 <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-gray"><i class="material-icons">local_library</i> ESCOLA</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola/nova}">Nova</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola}">Listar</a>
-	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> ALUNO</a>
+	  	 <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-green"><i class="material-icons">local_library</i> ESCOLA</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola/nova}">Cadastrar escola</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola}">Listar escolas</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-green"><i class="material-icons">person</i> ALUNO</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/aluno/novo}">Cadastrar aluno</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/aluno}">Listar alunos</a>
-	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> PROFESSOR</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-green"><i class="material-icons">person</i> PROFESSOR</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor/novo}">Cadastrar professor</a>
 	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor}">Listar professores</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-gray"><i class="material-icons">person</i> SECRETÁRIO</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario/novo}">Novo</a>
-	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario}">Listar</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-green"><i class="material-icons">person</i> SECRETÁRIO</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario/novo}">Cadastrar secretário</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario}">Listar secretários</a>
 
 		<form action="/logout" method="post">
 	  		<input type="submit" class="w3-bar-item w3-button w3-border-top w3-text-red" value="Sair" />

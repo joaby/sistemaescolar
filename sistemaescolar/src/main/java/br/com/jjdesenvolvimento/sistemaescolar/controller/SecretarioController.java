@@ -4,11 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
 import br.com.jjdesenvolvimento.sistemaescolar.model.Secretario;
@@ -32,13 +37,15 @@ public class SecretarioController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(Secretario secretario) {
-		//Escola escola = this.escolaService.buscarPorId(idEscola);
-		//secretario.setEscola(escola);
+	public String salvar(@Validated Secretario secretario, Errors errors, RedirectAttributes attributes) {
+		if(errors.hasErrors()) {
+			return "secretario/CadastroSecretario";
+		}
 		secretario.setLogin(secretario.getCpf());
 		secretario.setSenha(secretario.getCpf());
 		this.secretarioService.salvar(secretario);
-		return "redirect:secretario/novo";
+		attributes.addFlashAttribute("mensagem", "Secretário salvo com sucesso!" );
+		return "redirect:/secretario/novo";
 	}
 	
 	@RequestMapping("{id}")
@@ -55,9 +62,18 @@ public class SecretarioController {
 	}
 	
 	@RequestMapping
-	public ModelAndView buscarTodos() {
+	public ModelAndView buscarTodos(@RequestParam(defaultValue="0") int page) {
 		ModelAndView mv = new ModelAndView("secretario/ListaSecretarios");
-		mv.addObject("secretarios", this.secretarioService.buscarTodos());
+		mv.addObject("page", this.secretarioService.buscarTodos(page, 20));
+		mv.addObject("currentPage", page);
+		return mv;
+	}
+	
+	@RequestMapping("/nome")
+	public ModelAndView buscarPorNome(@RequestParam(defaultValue="0") int page, @RequestParam String nome) {
+		ModelAndView mv = new ModelAndView("secretario/ListaSecretarios");
+		mv.addObject("page", this.secretarioService.buscarPorNome(nome, page, 10));
+		mv.addObject("currentPage", page);
 		return mv;
 	}
 	

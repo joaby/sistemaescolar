@@ -78,7 +78,7 @@ $(document).ready(function(){
 		var botao = $(this);
 		var nome = botao.data('nome');
 		var id = botao.data('id');
-		var modal = $('#modal-exclusao');
+		var modal = $('#modal-exclusao-escola');
 		modal.show();
 		var form = modal.find('form');
 		form.attr('action', '/escola'+"/"+id);

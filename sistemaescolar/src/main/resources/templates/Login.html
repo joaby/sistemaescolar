@@ -22,10 +22,9 @@
 	  <div class="w3-col m4 w3-center"><p class="w3-text-teal">-----------</p></div>
 	  <div class="w3-col m4 w3-center">
 	  	<div class="w3-container w3-card-4 w3-border w3-round-xlarge">
+	  	
 			<form action="/entrar" method="post">
-				<div th:if="${param.logout}">
-					<p>Até logo!</p>
-				</div>
+		
 				<p>
 				<label>Usuário:</label>
 				<input id="usuario" class="w3-input w3-border w3-round-large" type="text" name="username" required />

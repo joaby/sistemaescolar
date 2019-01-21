@@ -33,18 +33,18 @@
 				<tr th:each="escola : ${escolas}">
 					<td th:text="${escola.id}"></td>
 					<td th:text="${escola.nome}"></td>
-					<td><a th:href="@{/escola/{id}(id=${escola.id})}"><i class="material-icons">edit</i></a></td>
-					<td><a class="btn-excluir-escola" th:attr="data-id=${escola.id}, data-nome=${escola.nome}"><i class="material-icons">delete</i></a></td>
+					<td><a th:href="@{/escola/{id}(id=${escola.id})}" class="w3-text-blue"><i class="material-icons">edit</i></a></td>
+					<td><a class="btn-excluir-escola w3-text-red" th:attr="data-id=${escola.id}, data-nome=${escola.nome}"><i class="material-icons">delete</i></a></td>
 				</tr>
 			</table>
 		</div>
 
 		<!-- Modal de excluir escola -->
-		<div id="modal-exclusao" class="w3-modal">
+		<div id="modal-exclusao-escola" class="w3-modal">
 			<div class="w3-modal-content w3-card-4 w3-animate-zoom">
 				<header class="w3-container w3-teal">
 					<span
-						onclick="document.getElementById('modal-exclusao').style.display='none'"
+						onclick="document.getElementById('modal-exclusao-escola').style.display='none'"
 						class="w3-button w3-display-topright">&times;</span>
 					<h2>Excluir</h2>
 				</header>
@@ -56,7 +56,7 @@
 						<input type="hidden" name="_method" value="DELETE" />
 						<button class="w3-button" type="submit">Sim</button>
 					</form>
-					<button class="w3-button" onclick="document.getElementById('modal-exclusao').style.display='none'">Não</button>
+					<button class="w3-button" onclick="document.getElementById('modal-exclusao-escola').style.display='none'">Não</button>
 				</footer>
 
 			</div>

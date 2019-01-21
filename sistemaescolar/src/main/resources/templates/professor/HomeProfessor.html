@@ -5,14 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-theme-teal.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="/css/style.css">
 <body>
 
@@ -31,8 +27,7 @@
 	  	  </div> 
 	  	  <div class="w3-col m10">
 	  	    <input type="submit" class="w3-button material-icons" value="search" />
-	  	  </div> 
-	  	    	
+	  	  </div>   	
 	  	 </div>   
 		</form>
 
@@ -53,7 +48,7 @@
 					<td th:text="${disciplina.turma.turno.descricao}"></td>
 					<td th:text="${disciplina.turma.escola.nome}"></td>
 					<td><a class="w3-button w3-circle w3-teal" th:href="@{/disciplina/{idDisciplina}/aula/nova(idDisciplina=${disciplina.id})}">+</a></td>
-					<td><a class="w3-button" th:href="@{/avaliacao/gerencia(idDisciplina=${disciplina.id})}">Gerenciar</a></td>
+					<td><a class="w3-button" th:href="@{/avaliacao/gerencia(idDisciplina=${disciplina.id})}"><i class="material-icons">settings</i></a></td>
 					<td><a class="w3-button w3-circle w3-teal" th:href="@{/disciplina/{idDisciplina}/frequencia/nova(idDisciplina=${disciplina.id})}">+</a></td>
 				</tr>
 			</table>

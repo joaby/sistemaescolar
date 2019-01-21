@@ -3,6 +3,7 @@ package br.com.jjdesenvolvimento.sistemaescolar.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
@@ -19,7 +20,7 @@ public class EscolaService {
 	}
 	
 	public List<Escola> buscarTodas(){
-		return escolaRepository.findAll();
+		return escolaRepository.findAll(new Sort("nome"));
 	}
 	
 	public Escola buscarPorId(Long id) {

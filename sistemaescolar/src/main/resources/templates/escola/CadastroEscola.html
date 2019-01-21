@@ -24,9 +24,11 @@
 	</div>
 	
 	<form th:action="@{/escola}" method="post" th:object="${escola}">
+	  <div th:insert="~{MensagemErro :: msg-erro}"></div>
+	  <div th:insert="~{MensagemGeral :: msg-geral}"></div>
 	  <input type="hidden" th:field="*{id}" /> 
 	  <label>Nome:</label>
-	  <input class="w3-input w3-border" type="text" th:field="*{nome}">
+	  <input class="w3-input w3-border" type="text" th:field="*{nome}" required="required" >
 	  <button type="submit" class="w3-button w3-section w3-green w3-ripple w3-padding">Salvar</button>	  
 	</form>
 	

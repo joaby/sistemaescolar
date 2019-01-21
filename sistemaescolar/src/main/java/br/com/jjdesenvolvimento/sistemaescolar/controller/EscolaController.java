@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.jjdesenvolvimento.sistemaescolar.model.Escola;
 import br.com.jjdesenvolvimento.sistemaescolar.service.EscolaService;
@@ -27,9 +30,13 @@ public class EscolaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(Escola escola) {
+	public String salvar(@Validated Escola escola, Errors errors, RedirectAttributes attributes) {
+		if(errors.hasErrors()) {
+			return "escola/CadastroEscola";
+		}
 		escolaService.salvar(escola);
-		return "redirect:escola/nova";
+		attributes.addFlashAttribute("mensagem", "Escola salva com sucesso!");
+		return "redirect:/escola/nova";
 	}
 	
 	@RequestMapping("{id}")

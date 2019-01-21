@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Escola {
@@ -14,6 +16,8 @@ public class Escola {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty
+	@Size(max=50)
 	private String nome;
 	
 	@OneToMany(mappedBy="escola")
