@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<div th:fragment="msg-erro">
+		<div class="w3-panel w3-pale-red w3-border w3-display-container" th:if= "${#fields.hasAnyErrors()}">
+			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+			<h3>Erro!</h3>
+			<div th:each="detailedError : ${#fields.detailedErrors()}">
+		    	<span th:text="${detailedError.fieldName +' : '+ detailedError.message}"></span>
+			</div>
+		</div> 
+	</div>
+    
+</html>

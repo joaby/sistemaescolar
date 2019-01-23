@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
+<body>
+  
+  <div th:fragment="menu">
+    
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-light-grey w3-border w3-round-large w3-animate-left" style="margin-top:10px; margin-left:6px;" id="mySidebar">
+	  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+	    <i class="fa fa-remove"></i>
+	  </a>
+	    
+	     <a sec:authorize="hasRole('ROLE_PROFESSOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO PROFESSOR</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO ADMINISTRADOR</a>
+	  	 <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button w3-text-teal" th:href="@{/}"><i class="material-icons">home</i> ÁREA DO SECRETÁRIO</a>
+	  	 <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-green"><i class="material-icons">local_library</i> ESCOLA</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola/nova}">Cadastrar escola</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/escola}">Listar escolas</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-green"><i class="material-icons">person</i> ALUNO</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/aluno/novo}">Cadastrar aluno</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/aluno}">Listar alunos</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-green"><i class="material-icons">person</i> PROFESSOR</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor/novo}">Cadastrar professor</a>
+	     <a sec:authorize="hasRole('ROLE_SECRETARIO')" class="w3-bar-item w3-button" th:href="@{/professor}">Listar professores</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-green"><i class="material-icons">person</i> SECRETÁRIO</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario/novo}">Cadastrar secretário</a>
+	     <a sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="w3-bar-item w3-button" th:href="@{/secretario}">Listar secretários</a>
+
+		<form action="/logout" method="post">
+	  		<input type="submit" class="w3-bar-item w3-button w3-border-top w3-text-red" value="Sair" />
+	  	</form>
+	  
+	</nav>
+	
+
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+  </div>
+  
+</body>  
+</html>

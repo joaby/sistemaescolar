@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Sistema Escolar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/css/style.css">
+<body>
+	
+  <header th:insert="~{Cabecalho :: cabecalho}"></header>
+  
+  <div th:insert="~{Menu :: menu}"></div>
+	
+  <div class="w3-main w3-container" style="margin-left:263px; margin-top:80px; margin-right:6px;">
+  
+  <h2 class="w3-center w3-text-teal">Lista de Alunos</h2>
+  
+  <table class="w3-table w3-border w3-striped">
+    <tr class="w3-teal">
+   	  <th>Matrícula</th> 	
+      <th>Nome Completo</th>
+      <th>Sexo</th>
+      <th>CPF</th>
+	  <th>Visualizar</th>
+	  <th>Editar</th>
+	  <th>Deletar</th>
+    </tr>
+    <tr th:each="aluno : ${alunos}">
+      <td th:text="${aluno.matricula}"></td>
+      <td th:text="${aluno.nome}"></td>
+      <td th:text="${aluno.sexo}"></td>
+      <td th:text="${aluno.cpf}"></td>
+      <td th:text="${aluno.dataNascimento}" style="display:none;"></td>
+      <td th:text="${aluno.nomeMae}" style="display:none;"></td>
+      <td th:text="${aluno.nomePai}" style="display:none;"></td>
+      <td th:text="${aluno.endereco}" style="display:none;"></td>
+      <td th:text="${aluno.telefone}" style="display:none;"></td>
+      <td th:text="${aluno.rg}" style="display:none;"></td>
+      <td th:text="${aluno.email}" style="display:none;"></td>
+      <td th:text="${aluno.especial}" style="display:none;"></td>
+      <td th:text="${aluno.anoIngresso}" style="display:none;"></td>
+      <td th:text="${aluno.status.descricao}" style="display:none;"></td>
+      
+	  <td><i class="material-icons" onclick="exibeAluno(event);">visibility</i></td>
+	  <td><i class="material-icons">edit</i></td>
+	  <td><i class="material-icons">delete</i></td>
+    </tr>
+    
+  </table>
+
+</div>
+
+	<div class="w3-container">
+		  
+		  <div id="modalExibicaoAluno" class="w3-modal">
+			<div class="w3-modal-content w3-animate-top w3-card-4">
+			  <header class="w3-container w3-teal"> 
+				<span onclick="document.getElementById('modalExibicaoAluno').style.display='none'" 
+				class="w3-button w3-display-topright">&times;</span>
+				<h2>Dados do Aluno</h2>
+			  </header>
+			  
+			  <div id="infoAluno" class="w3-container">
+			    <label>Matrícula: </label>
+			    <p></p>
+				<label class="w3-cell">Nome: </label>
+				<p class="w3-cell"></p>
+				<label>Sexo: </label>
+				<p></p>
+				<label>CPF: </label>
+				<p></p>
+				<label>Data de Nascimento:</label>
+				<p></p>
+				<label>Nome da mãe:</label>
+				<p></p>
+				<label>Nome do pai: </label>
+				<p></p>
+				<label>Endereço: </label>
+				<p></p>
+				<label>Telefone: </label>
+				<p></p>
+				<label>Rg: </label>
+				<p></p>
+				<label>Email: </label>
+				<p></p>
+				<label>Portador de necessidades: </label>
+				<p></p>
+				<label>Ano de ingresso: </label>
+				<p></p>
+				<label>Status: </label>
+				<p></p>
+	
+			  </div>
+			  
+			</div>
+		  </div>
+		</div>
+		
+		<script type="text/javascript" src="/js/escola.js"></script>
+		
+</body>
+</html>
