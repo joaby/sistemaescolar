@@ -1,6 +1,7 @@
 package br.com.jjdesenvolvimento.sistemaescolar.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class AlunoService {
 		return a;
 	}
 	
-	public Aluno buscarPorMatricula(String matricula){
+	public Optional<Aluno> buscarPorMatricula(String matricula){
 		return alunoRepository.findByMatricula(matricula);
 	}
 	

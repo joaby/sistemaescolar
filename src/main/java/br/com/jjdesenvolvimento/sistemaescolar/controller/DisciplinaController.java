@@ -77,7 +77,19 @@ public class DisciplinaController {
 	@RequestMapping("/{idDisciplina}/professor/novo")
 	public ModelAndView novoProfessorDisciplina(@PathVariable Long idDisciplina) {
 		ModelAndView mv = new ModelAndView("disciplina/AdicionaProfessorDisciplina");
-		mv.addObject("idDisciplina", idDisciplina);
+		Disciplina disciplina = disciplinaService.buscarPorId(idDisciplina);
+		mv.addObject("disciplina", disciplina);
+		return mv;
+	}
+	
+	@RequestMapping(value="/{idDisciplina}/professor", method=RequestMethod.POST)
+	public ModelAndView adicionarProfessorDisciplina(@PathVariable Long idDisciplina, String cpf) {
+		ModelAndView mv = new ModelAndView("turma/GerenciaTurma");
+		Disciplina disciplina = disciplinaService.buscarPorId(idDisciplina);
+		Professor professor = professorService.buscarPorCpf(cpf);
+		disciplina.getProfessores().add(professor);
+		disciplinaService.salvar(disciplina);
+		mv.addObject("turma", disciplina.getTurma());
 		return mv;
 	}
 	
@@ -133,17 +145,6 @@ public class DisciplinaController {
 		mv.addObject("aulas", aula.getDisciplina().getAulas());
 		mv.addObject("chamada", chamada);
 		mv.addObject("idAula", idAula);
-		return mv;
-	}
-	
-	@RequestMapping(value="/{idDisciplina}/professor", method=RequestMethod.POST)
-	public ModelAndView adicionarProfessorDisciplina(@PathVariable Long idDisciplina, String cpf) {
-		ModelAndView mv = new ModelAndView("disciplina/AdicionaProfessorDisciplina");
-		Disciplina disciplina = disciplinaService.buscarPorId(idDisciplina);
-		Professor professor = professorService.buscarPorCpf(cpf);
-		disciplina.getProfessores().add(professor);
-		disciplinaService.salvar(disciplina);
-		mv.addObject("idDisciplina", idDisciplina);
 		return mv;
 	}
 	

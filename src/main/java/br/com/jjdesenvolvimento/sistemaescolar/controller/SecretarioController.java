@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +28,7 @@ public class SecretarioController {
 	@Autowired
 	private EscolaService escolaService;
 	
+	//novo formulário
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView("secretario/CadastroSecretario");
@@ -36,6 +36,7 @@ public class SecretarioController {
 		return mv;
 	}
 	
+	//salva secretário
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Secretario secretario, Errors errors, RedirectAttributes attributes) {
 		if(errors.hasErrors()) {
@@ -48,6 +49,7 @@ public class SecretarioController {
 		return "redirect:/secretario/novo";
 	}
 	
+	//pesquisa secretário para edição
 	@RequestMapping("{id}")
 	public ModelAndView editar(@PathVariable("id") Secretario secretario) {
 		ModelAndView mv = new ModelAndView("secretario/CadastroSecretario");
@@ -55,12 +57,15 @@ public class SecretarioController {
 		return mv;
 	}
 	
+	//exclui secretário
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
-	public String excluir(@PathVariable Long id) {
+	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		secretarioService.excluir(id);
+		attributes.addFlashAttribute("mensagem", "Secretário excluido com sucesso!");
 		return "redirect:/secretario";
 	}
 	
+	//busca todos secretários
 	@RequestMapping
 	public ModelAndView buscarTodos(@RequestParam(defaultValue="0") int page) {
 		ModelAndView mv = new ModelAndView("secretario/ListaSecretarios");
@@ -69,6 +74,7 @@ public class SecretarioController {
 		return mv;
 	}
 	
+	//busca secretários por nome
 	@RequestMapping("/nome")
 	public ModelAndView buscarPorNome(@RequestParam(defaultValue="0") int page, @RequestParam String nome) {
 		ModelAndView mv = new ModelAndView("secretario/ListaSecretarios");

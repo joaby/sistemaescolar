@@ -58,7 +58,7 @@ public class LonginController {
 			Secretario secretario = this.secretarioService.buscarPorLogin(usuario.getUsername());
 			mv.setViewName("secretario/HomeSecretario");
 			mv.addObject("escola", secretario.getEscola());
-			mv.addObject("turmas", turmaService.filtrarTurmaPorAno(secretario.getEscola().getTurmas(), hoje.get(Calendar.YEAR)));
+			mv.addObject("turmas", turmaService.buscarPorEscolaAno(secretario.getEscola(), hoje.get(Calendar.YEAR)));
 			mv.addObject("todosTurnos", Arrays.asList(TurnoTurma.values()));
 			return mv;
 		}else if(usuario.getTipo().equals(TipoUsuario.PROFESSOR)) {

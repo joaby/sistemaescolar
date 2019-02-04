@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Turma {
@@ -19,7 +22,10 @@ public class Turma {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty
+	@Size(max=20)
 	private String nome;
+	@NotNull
 	private int ano;
 	@Enumerated(EnumType.STRING)
 	private TurnoTurma turno; 

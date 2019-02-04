@@ -30,11 +30,13 @@
 	</div>
 
   <div id="Alunos" class="opcao">
-    <h2>Alunos</h2>
+    <h3>Alunos</h3>
+    <div th:insert="~{MensagemAdvertencia :: msg-advertencia}"></div>
     <form th:action="@{/turma/{idTurma}/aluno(idTurma=${turma.id})}" method="post">
       <input type="text" class="w3-input w3-border" name="matriculaAluno" placeholder="Matrícula" />
       <input type="submit" class="w3-button w3-section w3-green w3-ripple w3-padding" value="Adicionar aluno" />
     </form>
+    <div th:insert="~{MensagemGeral :: msg-geral}"></div>
     <div class="w3-responsive">
     <table class="w3-table w3-border w3-striped">
 	    <tr class="w3-teal">
@@ -48,7 +50,7 @@
 	      <td>
 	      	<form th:action="@{/turma/{idTurma}/aluno/{idAluno}(idTurma=${turma.id}, idAluno=${aluno.id})}" method="post">
 	      		<input type="hidden" name="_method" value="DELETE">
-	      		<input type="submit" class="w3-button material-icons" value="delete">
+	      		<input type="submit" class="w3-button material-icons w3-text-red" value="delete">
 	      	</form>
 	      </td>
 	    </tr>   
@@ -74,15 +76,14 @@
 	      <td th:text="${disciplina.id}"></td>
 	      <td th:text="${disciplina.nome}"></td> 
 	      <td>
-	      	<table class="w3-border">
+	      	<table class="w3-border w3-border-yellow">
 	      	  <tr th:if="${#lists.isEmpty(disciplina.professores)}">
 	      	    <td>Sem professor</td>
 	      	  </tr>
 	      	  <tr th:each="professor : ${disciplina.professores}">
-	      	    <td th:text="${professor.cpf}"></td>
 	      	    <td th:text="${professor.nome}"></td>
 	      	    <td>
-	      	      <a class="btn-deleta-prof" th:href="@{/disciplina/{idDisciplina}/professor/{cpf}(idDisciplina=${disciplina.id}, cpf=${professor.cpf})}">
+	      	      <a class="btn-deleta-prof w3-text-red" title="Excluir" th:href="@{/disciplina/{idDisciplina}/professor/{cpf}(idDisciplina=${disciplina.id}, cpf=${professor.cpf})}">
 	      	      	<i class="material-icons">delete</i>
 	      	      </a>
 	      	    </td>
@@ -90,7 +91,7 @@
 	      	</table>
 	      </td>
 	      <td>
-	        <a th:href="@{/disciplina/{idDisciplina}/professor/novo(idDisciplina=${disciplina.id})}"><i class="material-icons w3-blue">add</i></a>  
+	        <a class="w3-button w3-square w3-green" th:href="@{/disciplina/{idDisciplina}/professor/novo(idDisciplina=${disciplina.id})}">+</a>  
 	      </td> 
 	    </tr>
 	  </table> 
