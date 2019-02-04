@@ -5,6 +5,7 @@
 		<div class="w3-panel w3-pale-yellow w3-border w3-display-container" th:if= "${!#strings.isEmpty(mensagemAdvertencia)}">
 			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
 			<h3>Aviso!</h3>
+			
 			<p><span th:text = "${mensagemAdvertencia}"></span></p>
 		</div> 
 	</div>
